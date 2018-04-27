@@ -5,19 +5,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.controllers.Welcome;
 import org.scenicview.ScenicView;
-import se.chalmers.cse.dat216.project.IMatDataHandler;
 
-public class Demo extends Application {
+public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-//        System.out.println(IMatDataHandler.getInstance().getProducts().size());
-        Parent root = FXMLLoader.load(getClass().getResource("/layout/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/layout/root.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        Scene scene = new Scene(root, 960, 540);
+        primaryStage.setScene(scene);
         primaryStage.show();
-        ScenicView.show(root);
+        ScenicView.show(scene);
 
     }
 

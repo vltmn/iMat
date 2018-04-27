@@ -6,14 +6,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ToolBar prefHeight="40.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <items>
-            <TextField prefHeight="27.0" prefWidth="799.0" />
-            <Button mnemonicParsing="false" text="Button" />
-          <Button mnemonicParsing="false" text="Button" />
-        </items>
-      </ToolBar>
-   </children>
-</AnchorPane>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.shape.Rectangle?>
+<ScrollPane fitToWidth="true" prefHeight="400.0" prefWidth="600.0" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+    <content>
+        <!-- do not put bounds on the FlowPane size -->
+        <FlowPane alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="Infinity" minHeight="-Infinity" prefWidth="600.0">
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            </children>
+        </FlowPane>
+    </content>
+</ScrollPane>
