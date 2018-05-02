@@ -1,0 +1,21 @@
+* {
+
+}
+
+.split-pane *.split-pane-divider {
+    -fx-padding: 0 1 0 1;
+}
+
+.product-card {
+    -fx-background-color: white;
+}
+
+.product-card .rectangle {
+    visibility: hidden;
+}
+
+.btn {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-padding: 10;
+    -fx-background-radius: 5;
+}
