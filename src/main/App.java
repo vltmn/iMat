@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import main.controllers.Welcome;
 import org.scenicview.ScenicView;
 
 public class App extends Application {
@@ -14,10 +13,12 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/layout/root.fxml"));
         primaryStage.setTitle("Hello World");
-        Scene scene = new Scene(root, 960, 540);
+        Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.setMaximized(true);
+//        ScenicView.show(scene);
         primaryStage.show();
-        ScenicView.show(scene);
+
 
     }
 

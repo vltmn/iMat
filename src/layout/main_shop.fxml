@@ -1,40 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
-<?import main.controllers.SearchBar?>
-<?import main.controllers.CategoriesList?>
-
 <?import javafx.scene.layout.HBox?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.scene.layout.VBox?>
+<?import main.components.CategoriesList?>
+<?import main.components.SearchBar?>
 
-<fx:root prefHeight="540.0" prefWidth="960.0" stylesheets="@styles.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxWidth="-Infinity" stylesheets="@styles.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <SplitPane fx:id="splitPane" dividerPositions="0.3" layoutX="94.0" layoutY="89.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <items>
-          <AnchorPane maxWidth="350.0" minHeight="0.0" minWidth="0.0" prefHeight="558.0" prefWidth="250.0" SplitPane.resizableWithParent="false">
-               <children>
-                  <!--<ListView layoutX="23.0" layoutY="137.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #666666;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />-->
-                   <CategoriesList fx:id="categoriesList" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0"/>
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" SplitPane.resizableWithParent="false">
-               <children>
-                  <ScrollPane fx:id="gridScroll" fitToWidth="true" layoutX="26.0" prefHeight="538.0" prefWidth="699.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <content>
-                        <FlowPane fx:id="productFlow" hgap="16.0" vgap="16.0" />
-                     </content>
-                  </ScrollPane>
-                   <SearchBar fx:id="searchBar"/>
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
+      <HBox styleClass="top-bar">
+         <children>
+             <SearchBar fx:id="searchBar" />
+         </children>
+      </HBox>
+      <javafx.scene.layout.AnchorPane prefHeight="540.0" prefWidth="960.0">
+         <children>
+            <SplitPane fx:id="splitPane" dividerPositions="0.3" layoutX="94.0" layoutY="89.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane fx:id="categoriesContainer" maxWidth="350.0" minHeight="0.0" minWidth="0.0" prefHeight="558.0" prefWidth="250.0" SplitPane.resizableWithParent="false">
+                     <children>
+                        <!--<ListView layoutX="23.0" layoutY="137.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #666666;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />-->
+                         <CategoriesList fx:id="categoriesList" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" SplitPane.resizableWithParent="false">
+                     <children>
+                        <ScrollPane fx:id="gridScroll" fitToWidth="true" layoutX="26.0" prefHeight="538.0" prefWidth="699.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <content>
+                              <FlowPane fx:id="productFlow" hgap="16.0" vgap="16.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children>
+      
+      </javafx.scene.layout.AnchorPane>
    </children>
-
 </fx:root>

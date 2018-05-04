@@ -1,7 +1,14 @@
 * {
+    -fx-main-color: #0C7C59;
+    -fx-accent-color: #D64933;
+    -fx-dark-color: #2B303A;
+    -fx-light-color: rgba(255,255,255, .9);
+    -fx-base: white;
+
+    -fx-text-dark: -fx-dark-color;
+    -fx-text-fill: -fx-text-dark;
 
 }
-
 .split-pane *.split-pane-divider {
     -fx-padding: 0 1 0 1;
 }
@@ -18,4 +25,28 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
     -fx-padding: 10;
     -fx-background-radius: 5;
+}
+
+.top-bar {
+    -fx-padding: 8px;
+}
+
+.searchbar {
+    -fx-background-color: -fx-base;
+    -fx-border-color: -fx-main-color;
+    -fx-border-width: 2px;
+}
+.searchbar .text-field {
+    -fx-background-color: transparent;
+    -fx-alignment: center-right;
+    -fx-padding: 12px;
+    -fx-border-insets: 12px;
+    -fx-background-insets: 12px;
+}
+
+.searchbar .font-icon {
+    -fx-background-color: -fx-main-color;
+    -fx-padding: 8px;
+    -fx-fill: -fx-light-color;
+
 }
