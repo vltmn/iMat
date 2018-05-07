@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 
-<fx:root type="HBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="CENTER_LEFT" type="HBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button mnemonicParsing="false" text="-" HBox.hgrow="NEVER" fx:id="subBtn" />
-      <TextField fx:id="qtyField" HBox.hgrow="ALWAYS" />
-      <Button mnemonicParsing="false" text="+" HBox.hgrow="NEVER" fx:id="addBtn" />
+      <Button fx:id="subBtn" mnemonicParsing="false" text="-" HBox.hgrow="NEVER" />
+      <TextField fx:id="qtyField" alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS" />
+      <Label fx:id="unitLabel" text="Label" />
+      <Button fx:id="addBtn" mnemonicParsing="false" text="+" HBox.hgrow="NEVER" />
    </children>
 
 </fx:root>

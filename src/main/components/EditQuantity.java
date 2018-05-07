@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -22,6 +23,9 @@ public class EditQuantity extends HBox {
     @FXML
     private Button subBtn;
 
+    @FXML
+    private Label unitLabel;
+
     private EventHandler<MouseEvent> addEvent;
     private EventHandler<MouseEvent> subEvent;
 
@@ -39,11 +43,11 @@ public class EditQuantity extends HBox {
         subBtn.setOnAction(event -> subEvent.handle(null));
     }
 
-    public EditQuantity(EventHandler<MouseEvent> addEvent, EventHandler<MouseEvent> subEvent) {
+    public EditQuantity(EventHandler<MouseEvent> addEvent, EventHandler<MouseEvent> subEvent, String unit) {
         this();
         this.addEvent = addEvent;
         this.subEvent = subEvent;
-
+        unitLabel.setText(unit);
     }
 
     public void setQuantity(double value) {

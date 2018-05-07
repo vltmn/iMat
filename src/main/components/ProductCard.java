@@ -74,7 +74,7 @@ public class ProductCard extends VBox {
         } else {
             editAmount = 1;
         }
-        editQuantity = new EditQuantity(addEvent, subEvent);
+        editQuantity = new EditQuantity(addEvent, subEvent, p.getUnitSuffix());
         updateQuantity();
         editQuantityWrapper.getChildren().add(editQuantity);
     }
