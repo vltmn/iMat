@@ -26,7 +26,7 @@ public class SearchBar extends HBox {
     private Predicate<Product> productPredicate = product -> true;
 
     public SearchBar() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/SearchBar.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/SearchBar.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 

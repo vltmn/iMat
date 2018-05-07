@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="VBox" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml" styleClass="shoppingcart-popover">
+    <children>
+        <ListView fx:id="list"/>
+        <Button mnemonicParsing="false" text="Gå till kassan"/>
+    </children>
+</fx:root>

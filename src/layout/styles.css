@@ -14,7 +14,7 @@
 }
 
 .product-card {
-    -fx-background-color: white;
+    -fx-padding: 8px;
 }
 
 .product-card .rectangle {
@@ -27,8 +27,15 @@
     -fx-background-radius: 5;
 }
 
-.top-bar {
+.main-shop {
+    -fx-background-color: -fx-base;
+}
+
+.main-shop>* {
     -fx-padding: 8px;
+}
+.top-bar {
+    -fx-padding: 8px 8px 0 8px;
 }
 
 .searchbar {
@@ -39,14 +46,29 @@
 .searchbar .text-field {
     -fx-background-color: transparent;
     -fx-alignment: center-right;
-    -fx-padding: 12px;
-    -fx-border-insets: 12px;
-    -fx-background-insets: 12px;
+    -fx-padding: 10px;
+    -fx-border-insets: 10px;
+    -fx-background-insets: 10px;
 }
 
 .searchbar .font-icon {
     -fx-background-color: -fx-main-color;
-    -fx-padding: 8px;
+    -fx-padding: 0 8px 0 8px;
     -fx-fill: -fx-light-color;
+}
 
+
+.shoppingcart-btn {
+    -fx-background-color: -fx-main-color;
+    -fx-border-color: -fx-main-color;
+    -fx-border-width: 2px;
+    -fx-padding: 6px;
+}
+
+.shoppingcart-btn .label {
+    -fx-text-fill: -fx-base;
+}
+.shoppingcart-btn .font-icon {
+    -fx-padding: 0 8px 0 8px ;
+    -fx-fill: -fx-light-color;
 }

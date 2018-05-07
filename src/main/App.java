@@ -11,12 +11,12 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/layout/root.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/layout/screen/root.fxml"));
         primaryStage.setTitle("Hello World");
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setMaximized(true);
-//        ScenicView.show(scene);
+//        primaryStage.setMaximized(true);
+        ScenicView.show(scene);
         primaryStage.show();
 
 

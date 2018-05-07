@@ -1,11 +1,9 @@
 package main.components;
 
 import javafx.beans.value.ChangeListener;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
@@ -22,7 +20,7 @@ public class CategoriesList extends ListView<ProductCategory> {
     private Predicate<Product> productPredicate = product -> true;
 
     public CategoriesList() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/CategoriesList.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/CategoriesList.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 
@@ -31,9 +29,9 @@ public class CategoriesList extends ListView<ProductCategory> {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        //TODO filter productcategories to only available ones
-        this.setItems(FXCollections.observableArrayList(productCategories));
-        this.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+//        //TODO filter productcategories to only available ones
+//        this.setItems(FXCollections.observableArrayList(productCategories));
+//        this.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
     }
 

@@ -6,14 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.scenicview.ScenicView;
-import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 public class Demo extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
 //        System.out.println(IMatDataHandler.getInstance().getProducts().size());
-        Parent root = FXMLLoader.load(getClass().getResource("/layout/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/layout/screen/sample.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
