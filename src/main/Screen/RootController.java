@@ -15,15 +15,19 @@ public class RootController implements Initializable {
     private Welcome welcomePane;
 
     private MainShop mainPane;
+
+    private Profile profilePane;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         mainPane = new MainShop();
         welcomePane = new Welcome(event -> mainPane.toFront());
-        rootPane.getChildren().addAll(mainPane, welcomePane);
+        profilePane = new Profile(event -> mainPane.toFront());
+        rootPane.getChildren().addAll(mainPane, welcomePane, profilePane);
         welcomePane.toFront();
         mainPane.toFront();
-
+//        profilePane.toFront();
 
 
     }

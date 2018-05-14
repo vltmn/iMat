@@ -15,6 +15,7 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import main.util.BackendUtil;
+import main.util.MiscUtil;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 
@@ -69,11 +70,8 @@ public class ProductCard extends VBox {
         Image i = IMatDataHandler.getInstance().getFXImage(p, productImage.getFitWidth(), productImage.getFitHeight());
         productImage.setImage(i);
 
-        if(product.getUnitSuffix().toLowerCase().equals("kg")) {
-            editAmount = .3;
-        } else {
-            editAmount = 1;
-        }
+        //TODO use new constructor in editquantity instead
+        editAmount = MiscUtil.getInstance().getProductEditAmount(p);
         editQuantity = new EditQuantity(addEvent, subEvent, p.getUnitSuffix());
         updateQuantity();
         editQuantityWrapper.getChildren().add(editQuantity);

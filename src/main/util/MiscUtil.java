@@ -1,5 +1,7 @@
 package main.util;
 
+import se.chalmers.cse.dat216.project.Product;
+
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -23,5 +25,15 @@ public class MiscUtil {
 
     public String formatAsCurrency(double value) {
         return nf.format(value);
+    }
+
+    public double getProductEditAmount(Product p) {
+        double editAmount;
+        if(p.getUnitSuffix().toLowerCase().equals("kg")) {
+            editAmount = .3;
+        } else {
+            editAmount = 1;
+        }
+        return editAmount;
     }
 }

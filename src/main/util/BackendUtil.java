@@ -5,6 +5,8 @@ import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ShoppingCart;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 public class BackendUtil {
@@ -21,6 +23,28 @@ public class BackendUtil {
         return IMatDataHandler.getInstance().getShoppingCart().getItems().stream()
                 .filter(si -> si.getProduct().getProductId() == p.getProductId())
                 .findAny().map(ShoppingItem::getAmount).orElse((double) 0);
+    }
+
+    public Map<String, String> getCustomerFields() {
+        Map<String, String> toReturn = new HashMap<>();
+        toReturn.put("firstName", "Förnamn");
+        toReturn.put("lastName", "Efternamn");
+        toReturn.put("phoneNumber", "Telefonnr.");
+        toReturn.put("email", "E-post");
+        toReturn.put("address", "Address");
+        toReturn.put("postCode", "Postnr.");
+        toReturn.put("postAddress", "Postort");
+        return toReturn;
+    }
+
+    public Map<String, String> getCreditCardFields() {
+        Map<String, String> toReturn = new HashMap<>();
+        toReturn.put("holdersName", "Kortinnehavare");
+        toReturn.put("validMonth", "Giltig t.o.m. månad");
+        toReturn.put("validYear", "Giltig t.o.m. år");
+        toReturn.put("cartNumber", "Kortnummer");
+        toReturn.put("verificationCode", "Verifikationsnr.");
+        return toReturn;
     }
     public ShoppingItem addProductAmountToCart(Product p) {
         return addProductAmountToCart(p, 1);

@@ -8,9 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import main.util.BackendUtil;
+import main.util.MiscUtil;
+import se.chalmers.cse.dat216.project.Product;
 
 import java.io.IOException;
 
+//TODO fix editing textfield, hide commas if discrete amount
 
 public class EditQuantity extends HBox {
 
@@ -43,6 +47,18 @@ public class EditQuantity extends HBox {
         subBtn.setOnAction(event -> subEvent.handle(null));
     }
 
+    public EditQuantity(Product p) {
+        this();
+        double editAmount = MiscUtil.getInstance().getProductEditAmount(p);
+        EventHandler<MouseEvent> addEvent = event -> BackendUtil.getInstance()
+                .addProductAmountToCart(p, editAmount);
+        EventHandler<MouseEvent> subEvent = event -> BackendUtil.getInstance()
+                .removeProductAmountFromCart(p, editAmount);
+        this.addEvent = addEvent;
+        this.subEvent = subEvent;
+        unitLabel.setText(p.getUnitSuffix());
+
+    }
     public EditQuantity(EventHandler<MouseEvent> addEvent, EventHandler<MouseEvent> subEvent, String unit) {
         this();
         this.addEvent = addEvent;

@@ -9,7 +9,14 @@
 <fx:root type="VBox" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml" styleClass="shoppingcart-popover">
     <children>
-        <ListView fx:id="list"/>
+        <!--<ListView fx:id="list"/>-->
+        <ScrollPane fitToWidth="true">
+            <content>
+                <VBox fx:id="cartList">
+
+                </VBox>
+            </content>
+        </ScrollPane>
         <Button mnemonicParsing="false" text="Gå till kassan"/>
     </children>
 </fx:root>
