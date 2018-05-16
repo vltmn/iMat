@@ -16,16 +16,16 @@
                 <VBox>
                     <children>
                         <Label styleClass="header" text="Leverans" />
-                        <Label text="namn" />
-                        <Label text="address" />
-                        <Label text="postaddress" />
-                        <Label text="e-mail" />
-                        <Label text="telefon" />
+                        <Label fx:id="nameLabel" text="namn" />
+                        <Label fx:id="addressLabel" text="address" />
+                        <Label fx:id="postAddressLabel" text="postaddress" />
+                        <Label fx:id="emailLabel" text="e-mail" />
+                        <Label fx:id="phoneLabel" text="telefon" />
 
                         <Label styleClass="header" text="Betalning" />
-                        <Label text="Kortinnehavare" />
-                        <Label text="Kortnummer" />
-                        <Label text="Giltighet" />
+                        <Label fx:id="cardHolderLabel" text="Kortinnehavare" />
+                        <Label fx:id="cardNumberLabel" text="Kortnummer" />
+                        <Label fx:id="validityLabel" text="Giltighet" />
                     </children>
                 </VBox>
             </children>

@@ -67,13 +67,18 @@ public class OrderProcess extends VBox {
 
         });
         forwardBtn.setOnAction(event -> {
+            boolean complete;
             switch (currentStep.get()) {
                 case 1:
-                    deliveryPane.complete();
+                    complete = deliveryPane.complete();
+                    if(!complete) {
+                        return;
+                    }
                     paymentPane.show();
                     break;
                 case 2:
-                    paymentPane.complete();
+                    complete = paymentPane.complete();
+                    if(!complete) return;
                     verificationPane.show();
                     forwardBtn.textProperty().setValue("Lägg beställning");
                     break;
@@ -81,14 +86,14 @@ public class OrderProcess extends VBox {
                     verificationPane.complete();
                     doneHandler.handle(event);
                     resetView();
-                    //TODO reset this view
                     break;
             }
             currentStep.setValue(currentStep.get() + 1);
         });
     }
 
-    private void resetView() {
+    public void resetView() {
+        //TODO test this
         currentStep = new SimpleIntegerProperty(1).asObject();
         forwardBtn.textProperty().setValue("Gå vidare");
         orderStack.getChildren().clear();

@@ -102,6 +102,7 @@ public class DeliveryPane extends VBox {
             nameLabel.setText("Data saknas");
             return;
         }
+        prefilledBtn.setSelected(true);
         nameLabel.setText(cust.getFirstName() + " " + cust.getLastName());
         phoneLabel.setText(cust.getPhoneNumber());
         emailLabel.setText(cust.getEmail());
@@ -111,7 +112,7 @@ public class DeliveryPane extends VBox {
 
     }
 
-    public void complete() {
+    public boolean complete() {
 
         String firstName = firstNameField.textProperty().get();
         String lastName = lastNameField.textProperty().get();
@@ -127,7 +128,9 @@ public class DeliveryPane extends VBox {
                 address.equals("") ||
                 state.equals("") ||
                 phone.equals("")) {
-            //TODO handle bad customer
+            badInputHandler();
+            return false;
+
         }
         cust.setAddress(address);
         cust.setFirstName(firstName);
@@ -140,6 +143,11 @@ public class DeliveryPane extends VBox {
 
         this.toBack();
         //TODO animate movement to left
+        return true;
+    }
+
+    private void badInputHandler() {
+        //TODO handle bad customer
     }
 
 }

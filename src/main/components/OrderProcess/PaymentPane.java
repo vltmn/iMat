@@ -60,6 +60,7 @@ public class PaymentPane extends VBox {
             throw new RuntimeException(e);
         }
         setActions();
+        initData();
     }
 
     private void setActions() {
@@ -87,17 +88,46 @@ public class PaymentPane extends VBox {
             nameLabel.setText("Data saknas");
             return;
         }
+        prefilledBtn.setSelected(true);
         nameLabel.setText(card.getHoldersName());
         cardNumberLabel.setText(card.getCardType());
         verCodeLabel.setText(String.valueOf(card.getVerificationCode()));
-        validThruLabel.setText(String.valueOf(card.getValidMonth()) + "/" + card.getValidYear());
+        validThruLabel.setText(BackendUtil.getInstance().getCreditCardValidity(card));
     }
 
     public void show() {
         this.toFront();
     }
 
-    public void complete() {
+    public boolean complete() {
+        String cardHolderName = cardHolderField.textProperty().get();
+        String cardNo = cardNoField.textProperty().get();
+
+        try {
+            int validMonth = Integer.parseInt(validMonthField.textProperty().get());
+            int validYear = Integer.parseInt(validYearField.textProperty().get());
+            int verCode = Integer.parseInt(verCodeField.textProperty().get());
+            if(cardHolderName.equals("") ||
+                    cardNo.equals("")) {
+                badInputHandler();
+                return false;
+            }
+            card.setValidMonth(validMonth);
+            card.setValidYear(validYear);
+            card.setVerificationCode(verCode);
+        } catch (NumberFormatException ex) {
+            badInputHandler();
+            return false;
+        }
+
+        card.setHoldersName(cardHolderName);
+        card.setCardNumber(cardNo);
+
         this.toBack();
+        return true;
+    }
+
+    private void badInputHandler() {
+        //TODO handle bad input
     }
 }
