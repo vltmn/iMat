@@ -78,7 +78,7 @@ public class BackendUtil {
         ShoppingCart shoppingCart = IMatDataHandler.getInstance().getShoppingCart();
         Optional<ShoppingItem> shoppingItemOpt = shoppingCart.getItems().stream().filter(si -> si.getProduct().getProductId() == p.getProductId()).findAny();
         ShoppingItem shoppingItem = shoppingItemOpt.orElse(new ShoppingItem(p, 0));
-        shoppingItem.setAmount(amount + shoppingItem.getAmount());
+        shoppingItem.setAmount(round(amount + shoppingItem.getAmount(),1 ));
         shoppingCart.removeItem(shoppingItem);
         if(shoppingItem.getAmount() > 0) {
             shoppingCart.addItem(shoppingItem);
@@ -86,5 +86,10 @@ public class BackendUtil {
         }
 
         return shoppingItem;
+    }
+
+    private static double round(double value, int precision) {
+        int scale = (int) Math.pow(10, precision);
+        return (double) Math.round(value * scale) / scale;
     }
 }
