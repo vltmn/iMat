@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.scenicview.ScenicView;
+import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 public class App extends Application {
 
@@ -22,6 +23,11 @@ public class App extends Application {
 
     }
 
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        IMatDataHandler.getInstance().shutDown();
+    }
 
     public static void main(String[] args) {
         launch(args);
