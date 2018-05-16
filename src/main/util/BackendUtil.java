@@ -45,7 +45,7 @@ public class BackendUtil {
         toReturn.put("cartNumber", "Kortnummer");
         toReturn.put("verificationCode", "Verifikationsnr.");
         return toReturn;
-    }q
+    }
     public ShoppingItem addProductAmountToCart(Product p) {
         return addProductAmountToCart(p, 1);
     }
