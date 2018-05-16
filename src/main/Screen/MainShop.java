@@ -126,12 +126,5 @@ public class MainShop extends VBox {
                             .findAny()
                             .ifPresent(pc -> pc.updateQuantity(cartEvent.getShoppingItem().getAmount()));
                 });
-        //set product list upper padding
-//        if(allProducts.stream().findAny().isPresent()) {
-//            ProductCard one = allProducts.stream().findAny().get();
-//            Product p = one.getProduct();
-//            double productCardHeight = one.getPrefHeight();
-//            productFlow.setPadding(new Insets(productCardHeight, 0, productCardHeight, 0));
-//        }
     }
 }
