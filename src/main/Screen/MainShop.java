@@ -110,13 +110,19 @@ public class MainShop extends VBox {
 
     private void populateGrid() {
         allProducts = IMatDataHandler.getInstance().getProducts().stream()
-                //.limit(PRODUCT_LIMIT)
                 .sorted(Comparator.comparing(Product::getName))
                 .map(ProductCard::new).collect(Collectors.toList());
         allProducts.forEach(productCard -> productFlow.getChildren().add(productCard));
         IMatDataHandler.getInstance().getShoppingCart()
                 .addShoppingCartListener(cartEvent -> {
-                    allProducts.stream().filter(pc -> pc.getProduct().getProductId() == cartEvent.getShoppingItem().getProduct().getProductId())
+
+                    allProducts.stream().filter(pc -> {
+                        if(cartEvent.getShoppingItem() == null) {
+                            pc.updateQuantity();
+                            return false;
+                        }
+                        return pc.getProduct().getProductId() == cartEvent.getShoppingItem().getProduct().getProductId();
+                    })
                             .findAny()
                             .ifPresent(pc -> pc.updateQuantity(cartEvent.getShoppingItem().getAmount()));
                 });

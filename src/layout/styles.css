@@ -31,6 +31,10 @@
     -fx-background-radius: 5;
 }
 
+.bg {
+    -fx-background-color: -fx-base;
+}
+
 .main-shop {
     -fx-background-color: -fx-base;
 }
