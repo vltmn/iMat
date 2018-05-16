@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="HBox" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane hbarPolicy="NEVER" prefHeight="400.0" prefWidth="100.0">
+         <content>
+            <FlowPane fx:id="historyFlow" prefHeight="200.0" prefWidth="200.0" />
+         </content>
+      </ScrollPane>
+      <ScrollPane hbarPolicy="NEVER" prefHeight="400.0" prefWidth="300.0">
+         <content>
+            <FlowPane fx:id="productFlow" prefHeight="200.0" prefWidth="200.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</fx:root>
