@@ -1,5 +1,7 @@
 package main.Screen;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
@@ -50,8 +52,10 @@ public class MainShop extends VBox {
     private final static int PRODUCT_LIMIT = 100;
 
     private List<ProductCard> allProducts = new ArrayList<>();
+    private EventHandler<ActionEvent> goToOrderProcess;
 
-    public MainShop() {
+    public MainShop(EventHandler<ActionEvent> goToOrderProcess) {
+        this.goToOrderProcess = goToOrderProcess;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/screen/main_shop.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -77,7 +81,7 @@ public class MainShop extends VBox {
         topBarWrapper.getChildren().add(shoppingCartBtn);
 
         //add shopping cart modal
-        shoppingCartModal = new ShoppingCartModal();
+        shoppingCartModal = new ShoppingCartModal(goToOrderProcess);
         AnchorPane.setTopAnchor(shoppingCartModal, -8.0);
         AnchorPane.setRightAnchor(shoppingCartModal, 0.0);
         shoppingCartModal.prefWidthProperty().bind(shoppingCartBtn.widthProperty());

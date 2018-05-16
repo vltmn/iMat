@@ -20,9 +20,9 @@
                         <VBox fx:id="prefilledGrid" alignment="TOP_RIGHT">
                             <children>
                                 <Label fx:id="nameLabel" text="Name" />
-                                <Label fx:id="cardNumberLabel" text="card No." />
-                                <Label fx:id="verCodeLabel" text="verification" />
-                                <Label fx:id="validThruLabel" text="11/11" />
+                                <Label fx:id="cardNumberLabel" />
+                                <Label fx:id="verCodeLabel" />
+                                <Label fx:id="validThruLabel" />
 
                             </children>
                         </VBox>
@@ -44,9 +44,11 @@
                             </columnConstraints>
                             <children>
                                 <Label text="Kortinnehavare" GridPane.halignment="RIGHT" />
+                                <Label text="Kortnummer" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                                 <Label text="CVC/CVV-kod" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                                 <Label text="Giltighetstid" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
                                 <TextField fx:id="cardHolderField" GridPane.columnIndex="1" />
+                                <TextField fx:id="cardNoField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                 <TextField fx:id="verCodeField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                 <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                     <children>
@@ -55,8 +57,6 @@
                                         <TextField fx:id="validYearField" />
                                     </children>
                                 </HBox>
-                                <Label text="Kortnummer" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                                <TextField fx:id="cardNoField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                             </children></GridPane>
                     </children>
                 </HBox>

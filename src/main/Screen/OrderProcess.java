@@ -49,19 +49,30 @@ public class OrderProcess extends VBox {
     }
 
     private void initBtns() {
-        backBtn.disableProperty().setValue(true);
-        currentStep.addListener((observable, oldValue, newValue) -> backBtn.disableProperty().setValue(newValue == 1));
+        currentStep.addListener((observable, oldValue, newValue) -> {
+            if(newValue == 1) {
+                backBtn.textProperty().setValue("Stäng");
+            } else if(newValue > 1) {
+                backBtn.textProperty().setValue("Tillbaka");
+            }
+
+            if(newValue == 3) {
+                forwardBtn.textProperty().setValue("Lägg order");
+            } else {
+                forwardBtn.textProperty().setValue("Gå vidare");
+            }
+        });
         backBtn.setOnAction(event -> {
             switch(currentStep.get()) {
+                case 1:
+                    doneHandler.handle(event);
+                    return;
                 case 2:
                     deliveryPane.toFront();
                     break;
                 case 3:
-                    forwardBtn.textProperty().setValue("Gå vidare");
                     paymentPane.toFront();
                     break;
-                default:
-                    return;
             }
             currentStep.setValue(currentStep.get() - 1);
 
@@ -80,7 +91,6 @@ public class OrderProcess extends VBox {
                     complete = paymentPane.complete();
                     if(!complete) return;
                     verificationPane.show();
-                    forwardBtn.textProperty().setValue("Lägg beställning");
                     break;
                 case 3:
                     verificationPane.complete();

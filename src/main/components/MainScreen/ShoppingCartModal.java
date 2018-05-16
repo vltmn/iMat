@@ -1,5 +1,7 @@
 package main.components.MainScreen;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
@@ -14,6 +16,8 @@ public class ShoppingCartModal extends VBox {
 
     @FXML
     private VBox cartList;
+    private EventHandler<ActionEvent> showChartEvent;
+
 
     public ShoppingCartModal() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/MainScreen/ShoppingCartPopOver.fxml"));
@@ -28,7 +32,12 @@ public class ShoppingCartModal extends VBox {
         initializeList();
         updateList();
         IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(cartEvent -> updateList());
-        //TODO bind to shoppingcart event
+    }
+
+    public ShoppingCartModal(EventHandler<ActionEvent> showChartEvent) {
+        this();
+
+        this.showChartEvent = showChartEvent;
     }
 
     private void updateList() {
@@ -41,5 +50,11 @@ public class ShoppingCartModal extends VBox {
     private void initializeList() {
 
 //        list.setCellFactory(param -> new CartRowCell());
+    }
+
+    @FXML
+    private void onGoToChartClicked() {
+        if(showChartEvent == null) return;
+        showChartEvent.handle(null);
     }
 }

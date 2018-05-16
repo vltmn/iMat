@@ -17,6 +17,6 @@
                 </VBox>
             </content>
         </ScrollPane>
-        <Button mnemonicParsing="false" text="Gå till kassan"/>
+        <Button onAction="#onGoToChartClicked" mnemonicParsing="false" text="Gå till kassan"/>
     </children>
 </fx:root>
