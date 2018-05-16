@@ -1,5 +1,7 @@
 package main.Screen;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.StackPane;
@@ -17,6 +19,7 @@ public class RootController implements Initializable {
     private MainShop mainPane;
 
     private Profile profilePane;
+    private OrderProcess orderProcess;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -24,7 +27,12 @@ public class RootController implements Initializable {
         mainPane = new MainShop();
         welcomePane = new Welcome(event -> mainPane.toFront());
         profilePane = new Profile(event -> mainPane.toFront());
-        rootPane.getChildren().addAll(mainPane, welcomePane, profilePane);
+
+        orderProcess = new OrderProcess(event -> {
+            mainPane.toFront();
+
+        });
+        rootPane.getChildren().addAll(mainPane, welcomePane, profilePane, orderProcess);
         welcomePane.toFront();
         mainPane.toFront();
 //        profilePane.toFront();

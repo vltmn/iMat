@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root styleClass="order-process-step" stylesheets="@../../styles.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label styleClass="main-header" text="Bekräfta din order" />
+        <HBox styleClass="confirm-wrapper">
+            <children>
+                <VBox>
+                    <Label styleClass="header" text="Din beställning" />
+
+                </VBox>
+                <VBox>
+                    <children>
+                        <Label styleClass="header" text="Leverans" />
+                        <Label text="namn" />
+                        <Label text="address" />
+                        <Label text="postaddress" />
+                        <Label text="e-mail" />
+                        <Label text="telefon" />
+
+                        <Label styleClass="header" text="Betalning" />
+                        <Label text="Kortinnehavare" />
+                        <Label text="Kortnummer" />
+                        <Label text="Giltighet" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</fx:root>

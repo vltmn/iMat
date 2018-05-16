@@ -11,7 +11,7 @@
 
 <fx:root styleClass="order-process-step" stylesheets="@../../styles.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label text="Välj betalningsmetod: " />
+        <Label styleClass="main-header" text="Välj betalningsmetod: " />
         <HBox>
             <children>
                 <HBox fx:id="savedPane">
