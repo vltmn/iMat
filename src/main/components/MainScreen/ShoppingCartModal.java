@@ -1,19 +1,12 @@
-package main.components;
+package main.components.MainScreen;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.VBox;
-import javafx.util.Callback;
-import main.util.BackendUtil;
+import main.components.CartRowCell;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
-import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
-import java.nio.channels.SelectableChannel;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +16,7 @@ public class ShoppingCartModal extends VBox {
     private VBox cartList;
 
     public ShoppingCartModal() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/ShoppingCartPopOver.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/MainScreen/ShoppingCartPopOver.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 

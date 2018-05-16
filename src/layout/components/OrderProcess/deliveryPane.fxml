@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.components.OrderProcess.DeliveryPane">
+    <children>
+        <Label text="Välj leveransaddress:" />
+        <HBox>
+            <children>
+                <HBox fx:id="savedPane">
+                    <children>
+                        <RadioButton fx:id="prefilledBtn" mnemonicParsing="false" />
+                        <VBox fx:id="prefilledGrid" alignment="TOP_RIGHT">
+                            <children>
+                                <Label fx:id="nameLabel" text="Name" />
+                                <Label fx:id="phoneLabel" text="phone" />
+                                <Label fx:id="emailLabel" text="email" />
+                                <Label fx:id="streetLabel" text="street" />
+                                <Label fx:id="postNoLabel" text="postno." />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                <HBox>
+                    <children>
+                        <RadioButton fx:id="inputBtn" mnemonicParsing="false" />
+                        <GridPane fx:id="inputGrid">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                     <columnConstraints>
+                        <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <children>
+                        <Label text="Efternamn" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                        <Label text="Telefonnr" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                        <Label text="Förnamn" GridPane.halignment="RIGHT" />
+                        <Label text="E-post" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                        <Label text="Address" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                        <Label text="Postnr" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                        <Label text="Postort" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+                        <TextField fx:id="firstNameField" GridPane.columnIndex="1" />
+                        <TextField fx:id="lastNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="addressField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="postNumField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                         <TextField fx:id="stateField" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                     </children></GridPane>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+    </children>
+
+</fx:root>

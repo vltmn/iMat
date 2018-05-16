@@ -1,4 +1,4 @@
-package main.components;
+package main.components.MainScreen;
 
 import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
@@ -26,7 +26,7 @@ public class SearchBar extends HBox {
     private Predicate<Product> productPredicate = product -> true;
 
     public SearchBar() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/SearchBar.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/MainScreen/SearchBar.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 

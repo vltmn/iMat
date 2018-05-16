@@ -1,4 +1,4 @@
-package main.components;
+package main.components.MainScreen;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,6 +14,7 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
+import main.components.EditQuantity;
 import main.util.BackendUtil;
 import main.util.MiscUtil;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
@@ -56,7 +57,7 @@ public class ProductCard extends VBox {
 
     private Product product;
     public ProductCard(Product p) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/product_card.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/MainScreen/product_card.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 

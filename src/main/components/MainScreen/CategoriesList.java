@@ -1,4 +1,4 @@
-package main.components;
+package main.components.MainScreen;
 
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
@@ -20,7 +20,7 @@ public class CategoriesList extends ListView<ProductCategory> {
     private Predicate<Product> productPredicate = product -> true;
 
     public CategoriesList() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/CategoriesList.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/MainScreen/CategoriesList.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 

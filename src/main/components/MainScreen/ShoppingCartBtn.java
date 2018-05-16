@@ -1,4 +1,4 @@
-package main.components;
+package main.components.MainScreen;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,9 +9,6 @@ import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.ShoppingCart;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.text.NumberFormat;
 
 public class ShoppingCartBtn extends HBox {
     @FXML
@@ -20,7 +17,7 @@ public class ShoppingCartBtn extends HBox {
 
     public ShoppingCartBtn() {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/ShoppingCartBtn.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/MainScreen/ShoppingCartBtn.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 

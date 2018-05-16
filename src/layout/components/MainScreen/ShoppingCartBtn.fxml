@@ -9,7 +9,7 @@
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <fx:root maxWidth="Infinity" prefHeight="40.0" prefWidth="250.0" alignment="CENTER_LEFT" styleClass="shoppingcart-btn"
-         stylesheets="@../styles.css" type="HBox" xmlns="http://javafx.com/javafx/8.0.141"
+         stylesheets="@../../styles.css" type="HBox" xmlns="http://javafx.com/javafx/8.0.141"
          xmlns:fx="http://javafx.com/fxml/1">
     <children>
 
