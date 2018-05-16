@@ -1,9 +1,6 @@
 package main.util;
 
-import se.chalmers.cse.dat216.project.IMatDataHandler;
-import se.chalmers.cse.dat216.project.Product;
-import se.chalmers.cse.dat216.project.ShoppingCart;
-import se.chalmers.cse.dat216.project.ShoppingItem;
+import se.chalmers.cse.dat216.project.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +32,15 @@ public class BackendUtil {
         toReturn.put("postCode", "Postnr.");
         toReturn.put("postAddress", "Postort");
         return toReturn;
+    }
+
+    public boolean isCreditCardComplete() {
+        CreditCard dbCard = IMatDataHandler.getInstance().getCreditCard();
+        if(dbCard.getCardNumber() == null) return false;
+        if("".equals(dbCard.getCardNumber())) return false;
+        //TODO add card type
+        if("".equals(dbCard.getHoldersName())) return false;
+        return true;
     }
 
     public Map<String, String> getCreditCardFields() {

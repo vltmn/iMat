@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.components.OrderProcess.DeliveryPane">
+<fx:root styleClass="order-process-step" stylesheets="@../../styles.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Label text="Välj leveransaddress:" />
         <HBox>
@@ -20,10 +20,10 @@
                         <VBox fx:id="prefilledGrid" alignment="TOP_RIGHT">
                             <children>
                                 <Label fx:id="nameLabel" text="Name" />
-                                <Label fx:id="phoneLabel" text="phone" />
-                                <Label fx:id="emailLabel" text="email" />
-                                <Label fx:id="streetLabel" text="street" />
-                                <Label fx:id="postNoLabel" text="postno." />
+                                <Label fx:id="phoneLabel" />
+                                <Label fx:id="emailLabel" />
+                                <Label fx:id="streetLabel" />
+                                <Label fx:id="postNoLabel" />
                             </children>
                         </VBox>
                     </children>
@@ -59,7 +59,7 @@
                         <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <TextField fx:id="addressField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <TextField fx:id="postNumField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                         <TextField fx:id="stateField" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                         <TextField fx:id="stateField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children></GridPane>
                     </children>
                 </HBox>

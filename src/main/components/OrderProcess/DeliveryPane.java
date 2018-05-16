@@ -47,6 +47,8 @@ public class DeliveryPane extends VBox {
     private TextField addressField;
     @FXML
     private TextField stateField;
+    @FXML
+    private TextField phoneField;
 
     private ToggleGroup btnGroup;
 
@@ -74,6 +76,7 @@ public class DeliveryPane extends VBox {
     }
 
     private void setActions() {
+        btnGroup = new ToggleGroup();
         prefilledBtn.setUserData("prefilled");
         inputBtn.setUserData("inputBtn");
         prefilledBtn.setToggleGroup(btnGroup);
@@ -96,7 +99,47 @@ public class DeliveryPane extends VBox {
             //cust is not complete, select empty text input
             savedPane.disableProperty().setValue(true);
             inputBtn.setSelected(true);
+            nameLabel.setText("Data saknas");
+            return;
         }
+        nameLabel.setText(cust.getFirstName() + " " + cust.getLastName());
+        phoneLabel.setText(cust.getPhoneNumber());
+        emailLabel.setText(cust.getEmail());
+        streetLabel.setText(cust.getAddress());
+        postNoLabel.setText(cust.getPostCode() + " " + cust.getPostAddress());
+
 
     }
+
+    public void complete() {
+
+        String firstName = firstNameField.textProperty().get();
+        String lastName = lastNameField.textProperty().get();
+        String email = emailField.textProperty().get();
+        String postNum = postNumField.textProperty().get();
+        String address = addressField.textProperty().get();
+        String state = stateField.textProperty().get();
+        String phone = phoneField.textProperty().get();
+        if(firstName.equals("") ||
+                lastName.equals("") ||
+                email.equals("") ||
+                postNum.equals("") ||
+                address.equals("") ||
+                state.equals("") ||
+                phone.equals("")) {
+            //TODO handle bad customer
+        }
+        cust.setAddress(address);
+        cust.setFirstName(firstName);
+        cust.setLastName(lastName);
+        cust.setEmail(email);
+        cust.setPostAddress(state);
+        cust.setPostCode(postNum);
+        cust.setPhoneNumber(phone);
+        cust.setMobilePhoneNumber(phone);
+
+        this.toBack();
+        //TODO animate movement to left
+    }
+
 }

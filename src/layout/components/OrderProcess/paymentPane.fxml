@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root styleClass="order-process-step" stylesheets="@../../styles.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label text="Välj betalningsmetod: " />
+        <HBox>
+            <children>
+                <HBox fx:id="savedPane">
+                    <children>
+                        <RadioButton fx:id="prefilledBtn" mnemonicParsing="false" />
+                        <VBox fx:id="prefilledGrid" alignment="TOP_RIGHT">
+                            <children>
+                                <Label fx:id="nameLabel" text="Name" />
+                                <Label fx:id="cardNumberLabel" text="card No." />
+                                <Label fx:id="verCodeLabel" text="verification" />
+                                <Label fx:id="validThruLabel" text="11/11" />
+
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                <HBox>
+                    <children>
+                        <RadioButton fx:id="inputBtn" mnemonicParsing="false" />
+                        <GridPane fx:id="inputGrid">
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                            </rowConstraints>
+                            <columnConstraints>
+                                <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <children>
+                                <Label text="Kortinnehavare" GridPane.halignment="RIGHT" />
+                                <Label text="CVC/CVV-kod" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                                <Label text="Giltighetstid" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                                <TextField fx:id="cardHolderField" GridPane.columnIndex="1" />
+                                <TextField fx:id="verCodeField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <children>
+                                        <TextField fx:id="validMonthField" />
+                                        <Label text="/" />
+                                        <TextField fx:id="validYearField" />
+                                    </children>
+                                </HBox>
+                                <Label text="Kortnummer" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                                <TextField fx:id="cardNoField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                            </children></GridPane>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+    </children>
+
+</fx:root>
