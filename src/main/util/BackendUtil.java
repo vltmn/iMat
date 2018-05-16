@@ -2,6 +2,8 @@ package main.util;
 
 import se.chalmers.cse.dat216.project.*;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -43,6 +45,10 @@ public class BackendUtil {
         return true;
     }
 
+    public String getCreditCardValidity(CreditCard card) {
+        NumberFormat nf = new DecimalFormat("00");
+        return nf.format(card.getValidMonth()) + "/" + nf.format(card.getValidYear());
+    }
     public Map<String, String> getCreditCardFields() {
         Map<String, String> toReturn = new HashMap<>();
         toReturn.put("holdersName", "Kortinnehavare");
