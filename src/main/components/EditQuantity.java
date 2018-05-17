@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import main.util.BackendUtil;
 import main.util.MiscUtil;
+import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 
 import java.io.IOException;
@@ -47,27 +48,43 @@ public class EditQuantity extends HBox {
         subBtn.setOnAction(event -> subEvent.handle(null));
     }
 
-    public EditQuantity(Product p) {
+    public EditQuantity(Product p, boolean removeItemIfEmpty) {
         this();
         double editAmount = MiscUtil.getInstance().getProductEditAmount(p);
-        EventHandler<MouseEvent> addEvent = event -> BackendUtil.getInstance()
-                .addProductAmountToCart(p, editAmount);
-        EventHandler<MouseEvent> subEvent = event -> BackendUtil.getInstance()
-                .removeProductAmountFromCart(p, editAmount);
+        EventHandler<MouseEvent> addEvent = event -> qtyField.setText(String.valueOf(getCartQty(p) + editAmount));
+        EventHandler<MouseEvent> subEvent = event -> qtyField.setText(String.valueOf(getCartQty(p) - editAmount));
         this.addEvent = addEvent;
         this.subEvent = subEvent;
         unitLabel.setText(p.getUnitSuffix());
+        IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(cartEvent -> {
+            qtyField.setText(String.valueOf(getCartQty(p)));
+        });
+        qtyField.textProperty().setValue(String.valueOf(getCartQty(p)));
+        qtyField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(oldValue.equals(newValue)) return;
+            if(!newValue.matches("\\d{0,7}([\\.]\\d{0,4})?")) {
+                qtyField.setText(oldValue);
+            }
+            if(newValue.equals("")) {
+                if(removeItemIfEmpty) {
+                    BackendUtil.getInstance().setProductAmount(p, 0);
+                }
+                return;
+            }
+            double value = Double.parseDouble(newValue);
+            if(value == getCartQty(p)) return;
+            BackendUtil.getInstance().setProductAmount(p, value);
 
-    }
-    public EditQuantity(EventHandler<MouseEvent> addEvent, EventHandler<MouseEvent> subEvent, String unit) {
-        this();
-        this.addEvent = addEvent;
-        this.subEvent = subEvent;
-        unitLabel.setText(unit);
+        });
     }
 
-    public void setQuantity(double value) {
-        qtyField.setText(String.valueOf(value));
+
+    public EditQuantity(Product p) {
+        this(p, true);
+    }
+
+    private double getCartQty(Product p) {
+        return BackendUtil.getInstance().getProductCartAmount(p);
     }
 
 

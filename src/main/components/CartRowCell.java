@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import main.util.BackendUtil;
 import main.util.MiscUtil;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
+import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 
@@ -19,6 +20,7 @@ import java.io.IOException;
 
 public class CartRowCell extends HBox {
 
+    private Product product;
     @FXML
     private Label productName;
 
@@ -31,14 +33,9 @@ public class CartRowCell extends HBox {
     @FXML
     private VBox nameAndQtyPane;
 
-    public CartRowCell(ShoppingItem item) {
-        this();
-        setData(item);
-    }
-
     private EditQuantity editQuantity;
 
-    public CartRowCell() {
+    public CartRowCell(Product p) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/CartRowCell.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -48,19 +45,23 @@ public class CartRowCell extends HBox {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        this.product = p;
+        initData();
     }
 
-    public void setData( ShoppingItem item) {
-        productName.setText(item.getProduct().getName());
-        Image prodImage = IMatDataHandler.getInstance().getFXImage(item.getProduct(), productImage.getFitWidth(), productImage.getFitHeight());
+    private void initData() {
+        productName.setText(product.getName());
+        Image prodImage = IMatDataHandler.getInstance().getFXImage(product, productImage.getFitWidth(), productImage.getFitHeight());
         productImage.setImage(prodImage);
-        totalLabel.setText(MiscUtil.getInstance().formatAsCurrency(item.getTotal()));
-        editQuantity = new EditQuantity(item.getProduct());
+        editQuantity = new EditQuantity(product);
         nameAndQtyPane.getChildren().add(editQuantity);
-        updateData(item);
     }
 
-    public void updateData(ShoppingItem item) {
-        editQuantity.setQuantity(item.getAmount());
+    public void updateData() {
+        totalLabel.setText(MiscUtil.getInstance().formatAsCurrency(BackendUtil.getInstance().getProductCartAmount(product)));
+    }
+
+    public int getProductId() {
+        return product.getProductId();
     }
 }

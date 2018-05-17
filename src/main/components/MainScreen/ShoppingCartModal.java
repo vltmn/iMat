@@ -9,16 +9,18 @@ import main.components.CartRowCell;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ShoppingCartModal extends VBox {
 
+
     @FXML
     private VBox cartList;
     private EventHandler<ActionEvent> showChartEvent;
-
+    private List<CartRowCell> crcs = new ArrayList<>();
 
     public ShoppingCartModal() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/MainScreen/ShoppingCartPopOver.fxml"));
@@ -42,16 +44,22 @@ public class ShoppingCartModal extends VBox {
     }
 
     private void updateList() {
-        List<CartRowCell> crcs = IMatDataHandler.getInstance().getShoppingCart().getItems().stream()
-                .sorted(Comparator.comparingInt(o -> o.getProduct().getProductId()))
-                .map(CartRowCell::new).collect(Collectors.toList());
+
         cartList.getChildren().clear();
-        cartList.getChildren().addAll(crcs);
+        List<Integer> prodIds = IMatDataHandler.getInstance().getShoppingCart().getItems().stream()
+                .map(si -> si.getProduct().getProductId())
+                .collect(Collectors.toList());
+        crcs.stream()
+                .filter(crc -> prodIds.contains(crc.getProductId()))
+                .forEach(crc -> {
+                    crc.updateData();
+                    cartList.getChildren().add(crc);
+                });
     }
 
     private void initializeList() {
-
-//        list.setCellFactory(param -> new CartRowCell());
+        crcs = IMatDataHandler.getInstance().getProducts().stream()
+                .map(CartRowCell::new).collect(Collectors.toList());
     }
 
     @FXML

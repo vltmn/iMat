@@ -1,5 +1,8 @@
 package main.util;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleDoubleProperty;
 import se.chalmers.cse.dat216.project.*;
 
 import java.text.DecimalFormat;
@@ -22,18 +25,6 @@ public class BackendUtil {
         return IMatDataHandler.getInstance().getShoppingCart().getItems().stream()
                 .filter(si -> si.getProduct().getProductId() == p.getProductId())
                 .findAny().map(ShoppingItem::getAmount).orElse((double) 0);
-    }
-
-    public Map<String, String> getCustomerFields() {
-        Map<String, String> toReturn = new HashMap<>();
-        toReturn.put("firstName", "Förnamn");
-        toReturn.put("lastName", "Efternamn");
-        toReturn.put("phoneNumber", "Telefonnr.");
-        toReturn.put("email", "E-post");
-        toReturn.put("address", "Address");
-        toReturn.put("postCode", "Postnr.");
-        toReturn.put("postAddress", "Postort");
-        return toReturn;
     }
 
     public boolean isCreditCardComplete() {

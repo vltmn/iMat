@@ -70,24 +70,13 @@ public class ProductCard extends VBox {
         productName.setText(p.getName());
         Image i = IMatDataHandler.getInstance().getFXImage(p, productImage.getFitWidth(), productImage.getFitHeight());
         productImage.setImage(i);
-
-        //TODO use new constructor in editquantity instead
         editAmount = MiscUtil.getInstance().getProductEditAmount(p);
-        editQuantity = new EditQuantity(addEvent, subEvent, p.getUnitSuffix());
-        updateQuantity();
+        editQuantity = new EditQuantity(p);
         editQuantityWrapper.getChildren().add(editQuantity);
 
     }
 
     public Product getProduct() {
         return product;
-    }
-
-
-    public void updateQuantity() {
-        updateQuantity(BackendUtil.getInstance().getProductCartAmount(product));
-    }
-    public void updateQuantity(double newAmount) {
-        editQuantity.setQuantity(newAmount);
     }
 }
