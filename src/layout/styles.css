@@ -13,23 +13,54 @@
     -fx-padding: 0 1 0 1;
 }
 
+.product-flow {
+    -fx-background-color: derive(white, -2%);
+    -fx-padding: 8px;
+}
 .product-card {
     -fx-padding: 8px;
+    -fx-border-width: 1px;
+    -fx-border-color: rgba(0,0,0,0.2);
+    -fx-background-color: white;
+}
+
+.product-card:hover {
+    -fx-border-color: rgba(0,0,0,0.4);
 }
 
 .product-card .rectangle {
     visibility: hidden;
 }
 
+.edit-quantity .button {
+    -fx-font-size: 15px;
+    -fx-background-color: -fx-main-color;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 0;
+    -fx-text-fill: -fx-light-color;
+}
+
+.edit-quantity .button:hover {
+    -fx-background-color: derive(-fx-main-color, 30%);
+}
+
+.edit-quantity .text-field {
+    -fx-border-radius: 0;
+    -fx-border-width: 1px;
+    -fx-background-color: -fx-base;
+    -fx-border-color: rgba(0,0,0,0.2);
+}
+
 .order-process-step {
     -fx-background-color: -fx-base;
 }
 
-.btn {
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-    -fx-padding: 10;
-    -fx-background-radius: 5;
-}
+/*.btn {*/
+    /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);*/
+    /*-fx-padding: 10;*/
+    /*-fx-background-radius: 5;*/
+/*}*/
 
 .bg {
     -fx-background-color: -fx-base;

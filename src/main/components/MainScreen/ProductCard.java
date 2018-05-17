@@ -43,6 +43,12 @@ public class ProductCard extends VBox {
     private Pane editQuantityWrapper;
 
     @FXML
+    private Label unitLabel;
+
+    @FXML
+    private Label priceLabel;
+
+    @FXML
     private ImageView productImage;
 
     private EditQuantity editQuantity;
@@ -73,6 +79,8 @@ public class ProductCard extends VBox {
         editAmount = MiscUtil.getInstance().getProductEditAmount(p);
         editQuantity = new EditQuantity(p);
         editQuantityWrapper.getChildren().add(editQuantity);
+        priceLabel.setText(MiscUtil.getInstance().formatAsCurrency(p.getPrice()));
+        unitLabel.setText(p.getUnit());
 
     }
 

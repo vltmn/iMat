@@ -28,8 +28,6 @@ public class EditQuantity extends HBox {
     @FXML
     private Button subBtn;
 
-    @FXML
-    private Label unitLabel;
 
     private EventHandler<MouseEvent> addEvent;
     private EventHandler<MouseEvent> subEvent;
@@ -55,7 +53,6 @@ public class EditQuantity extends HBox {
         EventHandler<MouseEvent> subEvent = event -> qtyField.setText(String.valueOf(getCartQty(p) - editAmount));
         this.addEvent = addEvent;
         this.subEvent = subEvent;
-        unitLabel.setText(p.getUnitSuffix());
         IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(cartEvent -> {
             qtyField.setText(String.valueOf(getCartQty(p)));
         });
