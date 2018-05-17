@@ -5,15 +5,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import main.components.TextInput;
-import main.util.BackendUtil;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class Profile extends VBox {
 
@@ -29,9 +25,35 @@ public class Profile extends VBox {
     @FXML
     private Button saveBtn;
 
-    private Map<String, TextInput> personalInputs;
+    @FXML
+    private GridPane paymentGrid;
 
-    private Map<String, TextInput> paymentInputs;
+    @FXML
+    private GridPane customerGrid;
+    @FXML
+    private TextField firstNameField;
+    @FXML
+    private TextField lastNameField;
+    @FXML
+    private TextField phoneField;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private TextField addressField;
+    @FXML
+    private TextField postCodeField;
+    @FXML
+    private TextField stateField;
+    @FXML
+    private TextField cardHolderField;
+    @FXML
+    private TextField cardNumberField;
+    @FXML
+    private TextField verCodeField;
+    @FXML
+    private TextField validMonthField;
+    @FXML
+    private TextField validYearField;
 
     public Profile(EventHandler<ActionEvent> closeFn) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/screen/profile.fxml"));
@@ -44,20 +66,17 @@ public class Profile extends VBox {
             throw new RuntimeException(e);
         }
         populatePersonalVbox();
-        populatePaymentVbox();
+        populatePersonal();
     }
 
-    private void populatePaymentVbox() {
-        paymentInputs = BackendUtil.getInstance().getCreditCardFields().entrySet().stream()
-                .map(es -> new TextInput(es.getKey(), es.getValue()))
-                .collect(Collectors.toMap(TextInput::getName, ti -> ti));
+    private void populatePersonal() {
+
+
 //        paymentVbox.getChildren().addAll(paymentInputs.values());
     }
 
     private void populatePersonalVbox() {
-        personalInputs = BackendUtil.getInstance().getCustomerFields().entrySet().stream()
-                .map(es -> new TextInput(es.getKey(), es.getValue()))
-                .collect(Collectors.toMap(TextInput::getName, ti -> ti));
+
 //        personalVbox.getChildren().addAll(personalInputs.values());
     }
 
