@@ -1,5 +1,8 @@
 package main.Screen;
 
+import javafx.beans.property.Property;
+import javafx.beans.property.ReadOnlyProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -84,7 +87,7 @@ public class MainShop extends VBox {
         topBarWrapper.getChildren().add(shoppingCartBtn);
 
         //add shopping cart modal
-        shoppingCartModal = new ShoppingCartModal(goToOrderProcess);
+        shoppingCartModal = new ShoppingCartModal(goToOrderProcess, mainContainer.heightProperty());
         AnchorPane.setTopAnchor(shoppingCartModal, -8.0);
         AnchorPane.setRightAnchor(shoppingCartModal, 0.0);
         shoppingCartModal.prefWidthProperty().bind(shoppingCartBtn.widthProperty());

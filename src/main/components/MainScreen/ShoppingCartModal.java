@@ -1,16 +1,18 @@
 package main.components.MainScreen;
 
+import javafx.beans.binding.NumberExpression;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import main.components.CartRowCell;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,11 +21,15 @@ public class ShoppingCartModal extends VBox {
 
     @FXML
     private VBox cartList;
+
+    @FXML
+    private ScrollPane cartScrollPane;
+
     private EventHandler<ActionEvent> showChartEvent;
     private List<CartRowCell> crcs = new ArrayList<>();
 
     public ShoppingCartModal() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/MainScreen/ShoppingCartPopOver.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/MainScreen/ShoppingCartModal.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 
@@ -43,6 +49,10 @@ public class ShoppingCartModal extends VBox {
         this.showChartEvent = showChartEvent;
     }
 
+    public ShoppingCartModal(EventHandler<ActionEvent> showChartEvent, NumberExpression ne) {
+        this(showChartEvent);
+        cartScrollPane.maxHeightProperty().bind(ne.subtract(40));
+    }
     private void updateList() {
 
         cartList.getChildren().clear();
