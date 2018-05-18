@@ -48,6 +48,9 @@ public class PaymentPane extends VBox {
     private ToggleGroup btnGroup;
     private CreditCard card;
 
+    private final static String PREFILLED = "PREFILLED";
+
+    private final static String MANUAL = "MANUAL";
 
     public PaymentPane() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/OrderProcess/paymentPane.fxml"));
@@ -65,16 +68,16 @@ public class PaymentPane extends VBox {
 
     private void setActions() {
         btnGroup = new ToggleGroup();
-        prefilledBtn.setUserData("prefilled");
-        inputBtn.setUserData("inputBtn");
+        prefilledBtn.setUserData(PREFILLED);
+        inputBtn.setUserData(MANUAL);
         prefilledBtn.setToggleGroup(btnGroup);
         inputBtn.setToggleGroup(btnGroup);
 
         btnGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            if("prefilled".equals(newValue.getUserData())) {
+            if(PREFILLED.equals(newValue.getUserData())) {
                 prefilledGrid.disableProperty().setValue(false);
                 inputGrid.disableProperty().setValue(true);
-            }else if("inputBtn".equals(newValue.getUserData())) {
+            }else if(MANUAL.equals(newValue.getUserData())) {
                 prefilledGrid.disableProperty().setValue(true);
                 inputGrid.disableProperty().setValue(false);
             }
@@ -100,6 +103,18 @@ public class PaymentPane extends VBox {
     }
 
     public boolean complete() {
+        if(btnGroup.selectedToggleProperty().getValue().getUserData().equals(MANUAL)) {
+            if(!updateCreditCardWithManualData()) {
+                return false;
+            }
+        } else if(!btnGroup.selectedToggleProperty().getValue().getUserData().equals(PREFILLED)) {
+            return false;
+        }
+        this.toBack();
+        return true;
+    }
+
+    private boolean updateCreditCardWithManualData() {
         String cardHolderName = cardHolderField.textProperty().get();
         String cardNo = cardNoField.textProperty().get();
 
@@ -122,8 +137,6 @@ public class PaymentPane extends VBox {
 
         card.setHoldersName(cardHolderName);
         card.setCardNumber(cardNo);
-
-        this.toBack();
         return true;
     }
 

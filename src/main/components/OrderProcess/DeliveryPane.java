@@ -55,6 +55,9 @@ public class DeliveryPane extends VBox {
     private Customer cust;
 
 
+    private final static String PREFILLED = "PREFILLED";
+
+    private final static String MANUAL = "MANUAL";
 
     public DeliveryPane() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/OrderProcess/deliveryPane.fxml"));
@@ -77,16 +80,16 @@ public class DeliveryPane extends VBox {
 
     private void setActions() {
         btnGroup = new ToggleGroup();
-        prefilledBtn.setUserData("prefilled");
-        inputBtn.setUserData("inputBtn");
+        prefilledBtn.setUserData(PREFILLED);
+        inputBtn.setUserData(MANUAL);
         prefilledBtn.setToggleGroup(btnGroup);
         inputBtn.setToggleGroup(btnGroup);
 
         btnGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            if("prefilled".equals(newValue.getUserData())) {
+            if(PREFILLED.equals(newValue.getUserData())) {
                 prefilledGrid.disableProperty().setValue(false);
                 inputGrid.disableProperty().setValue(true);
-            }else if("inputBtn".equals(newValue.getUserData())) {
+            }else if(MANUAL.equals(newValue.getUserData())) {
                 prefilledGrid.disableProperty().setValue(true);
                 inputGrid.disableProperty().setValue(false);
             }
@@ -113,7 +116,21 @@ public class DeliveryPane extends VBox {
     }
 
     public boolean complete() {
+        if(btnGroup.selectedToggleProperty().getValue().getUserData().equals(MANUAL)) {
+            if(!updateCustomerWithManualData()) {
+                return false;
+            }
+        }else if(!btnGroup.selectedToggleProperty().getValue().getUserData().equals(PREFILLED)) {
+            //bad btn
+            return false;
+        }
 
+        this.toBack();
+        //TODO animate movement to left
+        return true;
+    }
+
+    private boolean updateCustomerWithManualData() {
         String firstName = firstNameField.textProperty().get();
         String lastName = lastNameField.textProperty().get();
         String email = emailField.textProperty().get();
@@ -140,9 +157,6 @@ public class DeliveryPane extends VBox {
         cust.setPostCode(postNum);
         cust.setPhoneNumber(phone);
         cust.setMobilePhoneNumber(phone);
-
-        this.toBack();
-        //TODO animate movement to left
         return true;
     }
 
