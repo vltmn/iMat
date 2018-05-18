@@ -195,3 +195,6 @@
     -fx-font-size: 16px;
 }
 
+.light-box{
+    -fx-background-color: rgba(0,0,0,0.6);
+}

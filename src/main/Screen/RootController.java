@@ -21,6 +21,7 @@ public class RootController implements Initializable {
     private Profile profilePane;
     private OrderProcess orderProcess;
     private OrderHistory orderHistory;
+    private Thanks thanksPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -29,8 +30,12 @@ public class RootController implements Initializable {
         welcomePane = new Welcome(event -> mainPane.toFront());
         profilePane = new Profile(event -> mainPane.toFront());
         orderHistory = new OrderHistory();
-        orderProcess = new OrderProcess(event -> mainPane.toFront());
-        rootPane.getChildren().addAll(mainPane, welcomePane, profilePane, orderProcess, orderHistory);
+        thanksPane = new Thanks(event -> thanksPane.toBack());
+        orderProcess = new OrderProcess(event -> {
+            mainPane.toFront();
+            thanksPane.toFront();
+        });
+        rootPane.getChildren().addAll(mainPane, welcomePane, profilePane, orderProcess, orderHistory, thanksPane);
         welcomePane.toFront();
         mainPane.toFront();
 //        profilePane.toFront();
