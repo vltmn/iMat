@@ -67,4 +67,9 @@ public class ShoppingCartModal extends VBox {
         if(showChartEvent == null) return;
         showChartEvent.handle(null);
     }
+
+    @FXML
+    private void onClearCartClicked(){
+        IMatDataHandler.getInstance().getShoppingCart().clear();
+    }
 }
