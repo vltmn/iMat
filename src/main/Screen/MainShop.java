@@ -75,6 +75,9 @@ public class MainShop extends VBox {
         categoriesList = new CategoriesList();
         searchBar = new SearchBar();
         topBarWrapper.getChildren().add(searchBar);
+        Pane p = new Pane();
+        HBox.setHgrow(p, Priority.ALWAYS);
+        topBarWrapper.getChildren().add(p);
         shoppingCartBtn = new ShoppingCartBtn();
         HBox.setHgrow(shoppingCartBtn, Priority.ALWAYS );
         shoppingCartBtn.setOnMouseClicked((mouseEvent) -> shoppingCartModal.setVisible(!shoppingCartModal.isVisible()));

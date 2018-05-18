@@ -28,7 +28,7 @@
                             <children>
                                 <ScrollPane fitToWidth="true" layoutX="26.0" prefHeight="538.0" prefWidth="699.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <content>
-                                        <FlowPane fx:id="productFlow" hgap="16.0" styleClass="product-flow" vgap="16.0" />
+                                        <FlowPane fx:id="productFlow" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="16.0" styleClass="product-flow" vgap="16.0" />
                                     </content>
                                 </ScrollPane>
                             </children>

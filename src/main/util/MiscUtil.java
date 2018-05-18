@@ -13,18 +13,22 @@ public class MiscUtil {
         return ourInstance;
     }
 
-    private NumberFormat nf;
+    private NumberFormat currencyFormat;
+    private NumberFormat amountFormat;
 
     private MiscUtil() {
-        DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance();
+        DecimalFormatSymbols curDfs = DecimalFormatSymbols.getInstance();
         char decimalSeparator = ':';
-        dfs.setDecimalSeparator(decimalSeparator);
-        dfs.setMonetaryDecimalSeparator(decimalSeparator);
-        nf = new DecimalFormat("0.00", dfs);
+        curDfs.setDecimalSeparator(decimalSeparator);
+        curDfs.setMonetaryDecimalSeparator(decimalSeparator);
+        currencyFormat = new DecimalFormat("0.00", curDfs);
+        DecimalFormatSymbols amountDfs = DecimalFormatSymbols.getInstance();
+        amountDfs.setDecimalSeparator('.');
+        amountFormat = new DecimalFormat("0.##", amountDfs);
     }
 
     public String formatAsCurrency(double value) {
-        return nf.format(value);
+        return currencyFormat.format(value);
     }
 
     public double getProductEditAmount(Product p) {
@@ -35,5 +39,8 @@ public class MiscUtil {
             editAmount = 1;
         }
         return editAmount;
+    }
+    public String formatAsAmount(double value) {
+        return amountFormat.format(value);
     }
 }

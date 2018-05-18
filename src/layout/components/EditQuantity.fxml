@@ -4,11 +4,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 
-<fx:root alignment="CENTER_LEFT" styleClass="edit-quantity" stylesheets="@../styles.css" type="HBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="CENTER_LEFT" styleClass="edit-quantity" stylesheets="@../styles.css" type="HBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="subBtn" mnemonicParsing="false" text="-" HBox.hgrow="NEVER" />
+      <Button fx:id="subBtn" mnemonicParsing="false" styleClass="btn" text="-" HBox.hgrow="NEVER" />
       <TextField fx:id="qtyField" alignment="CENTER_RIGHT" prefWidth="60.0" text="0.0" HBox.hgrow="SOMETIMES" />
-      <Button fx:id="addBtn" mnemonicParsing="false" text="+" HBox.hgrow="NEVER" />
+      <Button fx:id="addBtn" mnemonicParsing="false" styleClass="btn" text="+" HBox.hgrow="NEVER" />
    </children>
 
 </fx:root>

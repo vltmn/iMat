@@ -53,12 +53,12 @@ public class CartRowCell extends HBox {
         productName.setText(product.getName());
         Image prodImage = IMatDataHandler.getInstance().getFXImage(product, productImage.getFitWidth(), productImage.getFitHeight());
         productImage.setImage(prodImage);
-        editQuantity = new EditQuantity(product);
+        editQuantity = new EditQuantity(product, false);
         nameAndQtyPane.getChildren().add(editQuantity);
     }
 
     public void updateData() {
-        totalLabel.setText(MiscUtil.getInstance().formatAsCurrency(BackendUtil.getInstance().getProductCartAmount(product)));
+        totalLabel.setText(MiscUtil.getInstance().formatAsCurrency(BackendUtil.getInstance().getProductCartAmount(product) * product.getPrice()));
     }
 
     public int getProductId() {

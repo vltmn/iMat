@@ -4,7 +4,8 @@
     -fx-dark-color: #2B303A;
     -fx-light-color: rgba(255,255,255, .9);
     -fx-base: white;
-
+    -fx-main-hover: derive(-fx-main-color, 30%);
+    -fx-main-pressed: derive(-fx-main-hover, 20%);
     -fx-text-dark: -fx-dark-color;
     -fx-text-fill: -fx-text-dark;
 
@@ -28,21 +29,9 @@
     -fx-border-color: rgba(0,0,0,0.4);
 }
 
-.product-card .rectangle {
-    visibility: hidden;
-}
-
-.edit-quantity .button {
+.edit-quantity .btn {
     -fx-font-size: 15px;
-    -fx-background-color: -fx-main-color;
-    -fx-background-radius: 0;
-    -fx-border-radius: 0;
-    -fx-border-width: 0;
-    -fx-text-fill: -fx-light-color;
-}
 
-.edit-quantity .button:hover {
-    -fx-background-color: derive(-fx-main-color, 30%);
 }
 
 .edit-quantity .text-field {
@@ -56,11 +45,29 @@
     -fx-background-color: -fx-base;
 }
 
-/*.btn {*/
-    /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);*/
-    /*-fx-padding: 10;*/
-    /*-fx-background-radius: 5;*/
-/*}*/
+.btn {
+    -fx-background-color: -fx-main-color;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 0;
+    -fx-text-fill: -fx-light-color;
+}
+
+.btn:hover {
+    -fx-background-color: -fx-main-hover;
+}
+
+.btn:pressed {
+    -fx-background-color: -fx-main-pressed;
+}
+.btn .label{
+    -fx-text-fill: -fx-base;
+}
+
+.btn .font-icon {
+    -fx-fill: -fx-base;
+}
+
 
 .bg {
     -fx-background-color: -fx-base;
@@ -82,6 +89,13 @@
     -fx-border-color: -fx-main-color;
     -fx-border-width: 2px;
 }
+
+.searchbar:hover, .searchbar:focused {
+    -fx-border-color: -fx-main-hover;
+}
+.searchbar:hover .font-icon, .searchbar:focused .font-icon{
+    -fx-background-color: -fx-main-hover;
+}
 .searchbar .text-field {
     -fx-background-color: transparent;
     -fx-alignment: center-right;
@@ -95,26 +109,22 @@
     -fx-padding: 0 8px 0 8px;
     -fx-fill: -fx-light-color;
 }
-
-
 .shoppingcart-btn {
-    -fx-background-color: -fx-main-color;
-    -fx-border-color: -fx-main-color;
-    -fx-border-width: 2px;
-    -fx-padding: 6px;
-}
-
-.shoppingcart-btn .label {
-    -fx-text-fill: -fx-base;
-}
-.shoppingcart-btn .font-icon {
-    -fx-padding: 0 8px 0 8px ;
-    -fx-fill: -fx-light-color;
+    -fx-padding: 0 8px 0 8px;
 }
 
 .cart-row-cell {
     -fx-border-width: 1px 0 0 0;
     -fx-border-color: rgba(0, 0, 0, 0.2);
+    -fx-padding: 8px;
+}
+
+.cart-row-cell .product-name {
+    -fx-font-size: 16px;
+}
+
+.cart-row-cell .total {
+    -fx-font-size: 14px;
 }
 .order-process-step .main-header {
     -fx-font-size: 20px;

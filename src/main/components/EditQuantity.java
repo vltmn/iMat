@@ -1,5 +1,6 @@
 package main.components;
 
+import com.sun.tools.hat.internal.util.Misc;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,23 +50,35 @@ public class EditQuantity extends HBox {
     public EditQuantity(Product p, boolean removeItemIfEmpty) {
         this();
         double editAmount = MiscUtil.getInstance().getProductEditAmount(p);
-        EventHandler<MouseEvent> addEvent = event -> qtyField.setText(String.valueOf(getCartQty(p) + editAmount));
-        EventHandler<MouseEvent> subEvent = event -> qtyField.setText(String.valueOf(getCartQty(p) - editAmount));
+        EventHandler<MouseEvent> addEvent = event -> qtyField.setText(MiscUtil.getInstance().formatAsAmount(getCartQty(p) + editAmount));
+        EventHandler<MouseEvent> subEvent = event -> qtyField.setText(MiscUtil.getInstance().formatAsAmount(getCartQty(p) - editAmount));
         this.addEvent = addEvent;
         this.subEvent = subEvent;
         IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(cartEvent -> {
-            qtyField.setText(String.valueOf(getCartQty(p)));
+            double cartQty = getCartQty(p);
+            if (cartQty == 0) subBtn.disableProperty().setValue(true);
+            else subBtn.disableProperty().setValue(false);
+            if(qtyField.getText().equals("") && cartQty == 0) return;
+            if(Double.parseDouble(qtyField.getText()) == cartQty) return;
+            qtyField.setText(MiscUtil.getInstance().formatAsAmount(cartQty));
         });
-        qtyField.textProperty().setValue(String.valueOf(getCartQty(p)));
+        double cartQty = getCartQty(p);
+        if(cartQty == 0) subBtn.disableProperty().setValue(true);
+        qtyField.textProperty().setValue(MiscUtil.getInstance().formatAsAmount(cartQty));
         qtyField.textProperty().addListener((observable, oldValue, newValue) -> {
             if(oldValue.equals(newValue)) return;
             if(!newValue.matches("\\d{0,7}([\\.]\\d{0,4})?")) {
                 qtyField.setText(oldValue);
+                return;
             }
             if(newValue.equals("")) {
-                if(removeItemIfEmpty) {
+                if(removeItemIfEmpty && getCartQty(p) != 0) {
                     BackendUtil.getInstance().setProductAmount(p, 0);
                 }
+                return;
+            }
+            if(oldValue.equals("") && newValue.equals(String.valueOf(0.0))) {
+                qtyField.setText(oldValue);
                 return;
             }
             double value = Double.parseDouble(newValue);

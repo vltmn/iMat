@@ -1,28 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import java.lang.String?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<fx:root maxWidth="Infinity" prefHeight="40.0" prefWidth="250.0" alignment="CENTER_LEFT" styleClass="shoppingcart-btn"
-         stylesheets="@../../styles.css" type="HBox" xmlns="http://javafx.com/javafx/8.0.141"
-         xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="CENTER_LEFT" maxWidth="300.0" prefHeight="40.0" prefWidth="250.0" spacing="8.0" stylesheets="@../../styles.css" type="HBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
     <children>
+          <FontIcon iconLiteral="fa-shopping-cart" iconSize="24" styleClass="font-icon" wrappingWidth="24.0" />
 
-        <HBox styleClass="font-icon">
-            <children>
-                <FontIcon iconLiteral="fa-shopping-cart" iconSize="24" styleClass="font-icon" wrappingWidth="24.0"/>
-            </children>
-        </HBox>
-
-        <Label text="Varukorg"/>
-        <Label fx:id="cartValueLabel" alignment="CENTER_RIGHT" maxWidth="Infinity" text="152.0" HBox.hgrow="ALWAYS"/>
+        <Label text="Varukorg" />
+        <Label fx:id="cartValueLabel" alignment="CENTER_RIGHT" maxWidth="Infinity" text="152.0" HBox.hgrow="ALWAYS" />
 
 
     </children>
+   <styleClass>
+      <String fx:value="shoppingcart-btn" />
+      <String fx:value="btn" />
+   </styleClass>
 
 </fx:root>
