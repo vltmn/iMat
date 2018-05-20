@@ -132,3 +132,11 @@
 .confirm-wrapper .header {
     -fx-font-size: 16px;
 }
+
+.category-row {
+    -fx-padding: 8px;
+}
+
+.category-row .label {
+    -fx-font-size: 16px;
+}

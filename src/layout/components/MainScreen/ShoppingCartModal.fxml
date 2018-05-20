@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root type="VBox" xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml" styleClass="shoppingcart-popover">
+<fx:root styleClass="shoppingcart-popover" stylesheets="@../../styles.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <!--<ListView fx:id="list"/>-->
         <ScrollPane fx:id="cartScrollPane" fitToWidth="true">

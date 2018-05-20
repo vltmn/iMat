@@ -1,8 +1,5 @@
 package main.Screen;
 
-import javafx.beans.property.Property;
-import javafx.beans.property.ReadOnlyProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -75,7 +72,7 @@ public class MainShop extends VBox {
 
     private void setupView() {
         //initiate custom controls
-        categoriesList = new CategoriesList();
+        categoriesList = new CategoriesList(mainContainer.heightProperty().subtract(16));
         searchBar = new SearchBar();
         topBarWrapper.getChildren().add(searchBar);
         Pane p = new Pane();
@@ -103,6 +100,7 @@ public class MainShop extends VBox {
             productFilters.put(CATEGORY_FILTER, newValue);
             filter();
         }));
+        categoriesWrapper.getChildren().add(categoriesList);
     }
 
     private void filter() {

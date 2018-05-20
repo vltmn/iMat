@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
 
-
-<fx:root prefHeight="Infinity" prefWidth="Infinity" type="ListView" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
-
+<fx:root stylesheets="@../../styles.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ScrollPane fx:id="scrollPane" cache="true" fitToWidth="true">
+            <content>
+                <VBox fx:id="listPane" />
+            </content>
+        </ScrollPane>
+    </children>
 </fx:root>
