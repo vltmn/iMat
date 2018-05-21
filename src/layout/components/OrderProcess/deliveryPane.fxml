@@ -52,10 +52,10 @@
                   </HBox>
                   <HBox styleClass="panel-content">
                      <children>
-                            <HBox spacing="10.0" styleClass="input-pane">
+                            <HBox spacing="10.0" styleClass="input-pane" HBox.hgrow="ALWAYS">
                                 <children>
                                     <RadioButton fx:id="inputBtn" mnemonicParsing="false" />
-                                    <GridPane fx:id="inputGrid" styleClass="input-grid" HBox.hgrow="SOMETIMES">
+                                    <GridPane fx:id="inputGrid" styleClass="input-grid" HBox.hgrow="ALWAYS">
                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" />
@@ -67,7 +67,7 @@
                                  </rowConstraints>
                                  <columnConstraints>
                                     <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="250.0" minWidth="10.0" prefWidth="100.0" />
                                  </columnConstraints>
                                  <children>
                                     <Label text="Efternamn" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
@@ -86,11 +86,6 @@
                                      <TextField fx:id="stateField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                  </children>
                               </GridPane>
-                              <HBox HBox.hgrow="NEVER">
-                                 <HBox.margin>
-                                    <Insets right="100.0" />
-                                 </HBox.margin>
-                              </HBox>
                                 </children>
                             </HBox>
                      </children>

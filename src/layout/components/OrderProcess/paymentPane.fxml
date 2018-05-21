@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
@@ -52,7 +51,7 @@
                   </HBox>
                   <HBox styleClass="panel-content">
                      <children>
-                            <HBox styleClass="input-pane">
+                            <HBox styleClass="input-pane" HBox.hgrow="SOMETIMES">
                                 <children>
                                     <RadioButton fx:id="inputBtn" mnemonicParsing="false" />
                                     <GridPane fx:id="inputGrid" styleClass="input-grid" HBox.hgrow="ALWAYS">
@@ -83,11 +82,6 @@
                                             </HBox>
                                         </children>
                               </GridPane>
-                              <HBox>
-                                 <HBox.margin>
-                                    <Insets right="100.0" />
-                                 </HBox.margin>
-                              </HBox>
                                 </children>
                             </HBox>
                      </children>

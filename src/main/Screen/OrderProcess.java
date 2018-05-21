@@ -31,9 +31,11 @@ public class OrderProcess extends VBox {
     private Button forwardBtn;
     private ConfirmationPane confirmationPane;
     private EventHandler<ActionEvent> doneHandler;
+    private EventHandler<ActionEvent> closeHandler;
 
-    public OrderProcess(EventHandler<ActionEvent> doneHandler) {
+    public OrderProcess(EventHandler<ActionEvent> doneHandler, EventHandler<ActionEvent> closeHandler) {
         this.doneHandler = doneHandler;
+        this.closeHandler = closeHandler;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/screen/order_process.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -50,9 +52,9 @@ public class OrderProcess extends VBox {
     private void initBtns() {
         currentStep.addListener((observable, oldValue, newValue) -> {
             if(newValue == 1) {
-                backBtn.textProperty().setValue("Stäng");
+                backBtn.disableProperty().set(true);
             } else if(newValue > 1) {
-                backBtn.textProperty().setValue("Tillbaka");
+                backBtn.disableProperty().set(false);
             }
 
             if(newValue == 3) {
@@ -102,7 +104,6 @@ public class OrderProcess extends VBox {
     }
 
     public void resetView() {
-        //TODO test this
         currentStep = new SimpleIntegerProperty(1).asObject();
         forwardBtn.textProperty().setValue("Gå vidare");
         orderStack.getChildren().clear();
@@ -117,5 +118,10 @@ public class OrderProcess extends VBox {
         confirmationPane = new ConfirmationPane();
 //        orderStack.getChildren().addAll(paymentPane, deliveryPane);
         orderStack.getChildren().addAll(confirmationPane, paymentPane, deliveryPane);
+    }
+
+    @FXML
+    private void onCloseBtnClicked() {
+        closeHandler.handle(null);
     }
 }

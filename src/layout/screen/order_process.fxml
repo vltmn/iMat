@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <fx:root styleClass="modal-wrapper" stylesheets="@../styles.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -17,13 +17,14 @@
             <AnchorPane prefHeight="100.0" prefWidth="400.0">
                <children>
                   <Label text="status" />
+                  <FontIcon iconLiteral="fa-times" iconSize="24" onMouseClicked="#onCloseBtnClicked" styleClass="close" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <StackPane fx:id="orderStack" VBox.vgrow="ALWAYS" />
             <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                <children>
                   <Pane HBox.hgrow="ALWAYS" />
-                  <Button fx:id="backBtn" mnemonicParsing="false" styleClass="btn" text="Stäng" />
+                  <Button fx:id="backBtn" disable="true" mnemonicParsing="false" styleClass="btn" text="Tillbaka" />
                   <Pane HBox.hgrow="ALWAYS" />
                   <Button fx:id="forwardBtn" mnemonicParsing="false" styleClass="btn" text="Gå vidare" />
                   <Pane HBox.hgrow="ALWAYS" />

@@ -84,6 +84,20 @@
     -fx-font-size: 18px;
 }
 
+.order-process .close {
+    -fx-fill: -fx-warning-color;
+}
+.order-process .close:hover {
+    -fx-fill: derive(-fx-warning-color, -20%);
+}
+
+.order-process .close:pressed {
+    -fx-fill: derive(-fx-warning-color, -40%);
+}
+.cart-btn .btn {
+    -fx-font-size: 16px;
+}
+
 .btn {
     -fx-font-size: 14px;
     -fx-background-color: -fx-base;

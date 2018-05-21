@@ -34,7 +34,7 @@ public class RootController implements Initializable {
         orderProcess = new OrderProcess(event -> {
             mainPane.toFront();
             thanksPane.toFront();
-        });
+        }, event -> mainPane.toFront());
         rootPane.getChildren().addAll(mainPane, welcomePane, profilePane, orderProcess, orderHistory, thanksPane);
         welcomePane.toFront();
         mainPane.toFront();
