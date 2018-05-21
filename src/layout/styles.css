@@ -28,6 +28,10 @@
     -fx-border-color: rgba(0,0,0,0.4);
 }
 
+.product-card-text{
+    -fx-font-size: 20px;
+}
+
 .edit-quantity .btn {
     -fx-font-size: 15px;
 

@@ -80,7 +80,7 @@ public class ProductCard extends VBox {
         editQuantity = new EditQuantity(p);
         editQuantityWrapper.getChildren().add(editQuantity);
         priceLabel.setText(MiscUtil.getInstance().formatAsCurrency(p.getPrice()));
-        unitLabel.setText(p.getUnit());
+        unitLabel.setText(p.getUnit().toLowerCase());
 
     }
 
