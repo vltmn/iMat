@@ -49,7 +49,7 @@
     -fx-spacing: 16px;
 }
 
-.order-process-step .input-grid {
+.input-grid {
     -fx-hgap: 12px;
     -fx-vgap: 8px;
 }
@@ -285,6 +285,9 @@
     -fx-background-radius: 5px;
 }
 
+.modal {
+    -fx-background-radius: 5px;
+}
 .sequence-map .line {
     -fx-background-color: -fx-base;
     -fx-border-width: 1px 0;
