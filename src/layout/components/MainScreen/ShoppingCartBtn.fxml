@@ -17,6 +17,7 @@
    <styleClass>
       <String fx:value="shoppingcart-btn" />
       <String fx:value="btn" />
+      <String fx:value="btn-default" />
    </styleClass>
 
 </fx:root>

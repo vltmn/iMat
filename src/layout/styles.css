@@ -37,7 +37,7 @@
 
 .edit-quantity .text-field {
     -fx-border-radius: 0;
-    -fx-border-width: 1px;
+    -fx-border-width: 0;
     -fx-background-color: -fx-base;
     -fx-border-color: rgba(0,0,0,0.2);
 }
@@ -48,11 +48,19 @@
 
 .btn {
     -fx-font-size: 14px;
-    -fx-background-color: -fx-main-color;
+    -fx-background-color: -fx-base;
+    /*-fx-background-color: -fx-main-color;*/
     -fx-background-radius: 0;
     -fx-border-radius: 0;
-    -fx-border-width: 0;
-    -fx-text-fill: -fx-light-color;
+    -fx-border-width: 2px;
+    -fx-border-color: -fx-main-color;
+    /*-fx-text-fill: -fx-light-color;*/
+    -fx-text-fill: -fx-main-color;
+
+}
+
+.btn .font-icon {
+    -fx-fill: -fx-main-color;
 }
 
 .btn:hover {
@@ -62,16 +70,33 @@
 .btn:pressed {
     -fx-background-color: -fx-main-pressed;
 }
-.btn .label{
+
+.btn.btn-default {
+    -fx-border-width: 0;
+    -fx-background-color: -fx-main-color;
     -fx-text-fill: -fx-base;
 }
 
-.btn .font-icon {
+.btn.btn-default:hover {
+    -fx-background-color: -fx-main-hover;
+}
+
+.btn.btn-default:pressed {
+    -fx-background-color: -fx-main-pressed;
+}
+
+.btn.btn-default .label{
+    -fx-text-fill: -fx-base;
+}
+
+.btn.btn-default .font-icon {
     -fx-fill: -fx-base;
 }
 
 .btn.btn-warning {
+    -fx-border-width: 0;
     -fx-background-color: -fx-warning-color;
+    -fx-text-fill: -fx-base;
 }
 
 .btn.btn-warning:hover {
@@ -80,6 +105,14 @@
 
 .btn.btn-warning:pressed {
     -fx-background-color: derive(-fx-warning-color, -40%);
+}
+
+.btn.btn-warning .font-icon {
+    -fx-fill: -fx-base;
+}
+
+.btn.btn-warning .label {
+    -fx-text-fill: -fx-base;
 }
 
 .bg {

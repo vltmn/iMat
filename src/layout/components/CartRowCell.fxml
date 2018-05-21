@@ -45,7 +45,7 @@
               </VBox>
             <VBox alignment="CENTER_RIGHT" styleClass="total">
                <children>
-                  <FontIcon iconLiteral="fa-trash" iconSize="20" onMouseClicked="#onRemoveClick" styleClass="remove" />
+                  <FontIcon iconLiteral="fa-trash" iconSize="24" onMouseClicked="#onRemoveClick" styleClass="remove" />
                   <Pane VBox.vgrow="ALWAYS" />
                   <Label fx:id="totalLabel" text="100:0" />
                </children>
