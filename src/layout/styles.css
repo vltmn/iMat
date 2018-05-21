@@ -139,6 +139,14 @@
 .cart-row-cell .total {
     -fx-font-size: 14px;
 }
+
+.cart-row-cell .remove:hover {
+    -fx-fill: derive(-fx-warning-color, -20%);
+}
+
+.cart-row-cell .remove:pressed {
+    -fx-fill: derive(-fx-warning-color, 30%);
+}
 .order-process-step .main-header {
     -fx-font-size: 20px;
 }
@@ -153,3 +161,4 @@
 .category-row .label {
     -fx-font-size: 16px;
 }
+
