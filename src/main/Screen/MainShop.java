@@ -78,10 +78,8 @@ public class MainShop extends VBox {
         //initiate custom controls
         categoriesList = new CategoriesList(mainContainer.heightProperty().subtract(16));
         searchBar = new SearchBar();
+        HBox.setHgrow(searchBar, Priority.ALWAYS);
         topBarWrapper.getChildren().add(searchBar);
-        Pane p = new Pane();
-        HBox.setHgrow(p, Priority.ALWAYS);
-        topBarWrapper.getChildren().add(p);
         shoppingCartBtn = new ShoppingCartBtn();
         HBox.setHgrow(shoppingCartBtn, Priority.ALWAYS );
         shoppingCartBtn.setOnMouseClicked((mouseEvent) -> shoppingCartModal.setVisible(!shoppingCartModal.isVisible()));
