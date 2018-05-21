@@ -42,15 +42,10 @@
             <children>
                 <SplitPane fx:id="splitPane" dividerPositions="0.3" layoutX="94.0" layoutY="89.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                        <AnchorPane fx:id="categoriesWrapper" maxWidth="250.0" minHeight="0.0" minWidth="250.0" prefWidth="250.0" SplitPane.resizableWithParent="false">
-                            <children>
-                                <!--<ListView layoutX="23.0" layoutY="137.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #666666;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />-->
-                                <!--<CategoriesList fx:id="categoriesList" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />-->
-                            </children>
-                        </AnchorPane>
+                  <VBox fx:id="categoriesWrapper" maxWidth="250.0" minHeight="0.0" minWidth="250.0" prefWidth="250.0" />
                         <AnchorPane SplitPane.resizableWithParent="false">
                             <children>
-                                <ScrollPane fitToWidth="true" layoutX="26.0" prefHeight="538.0" prefWidth="699.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <ScrollPane fitToWidth="true" layoutX="26.0" prefHeight="538.0" prefWidth="699.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <content>
                                         <FlowPane fx:id="productFlow" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="16.0" styleClass="product-flow" vgap="16.0" />
                                     </content>

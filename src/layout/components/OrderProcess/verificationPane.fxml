@@ -11,8 +11,13 @@
         <Label styleClass="main-header" text="Bekräfta din order" />
         <HBox alignment="TOP_CENTER" styleClass="container">
             <children>
-                <VBox fx:id="orderBox" styleClass="confirm-pane" HBox.hgrow="SOMETIMES">
-                    <Label styleClass="header" text="Din beställning" />
+                <VBox styleClass="panel" HBox.hgrow="SOMETIMES">
+               <HBox styleClass="header">
+                  <children>
+                          <Label text="Din beställning" />
+                  </children>
+               </HBox>
+               <VBox fx:id="orderBox" styleClass="panel-content" VBox.vgrow="ALWAYS" />
                <HBox.margin>
                   <Insets left="-20.0" />
                </HBox.margin>
@@ -20,17 +25,41 @@
                 </VBox>
                 <VBox styleClass="confirm-pane" HBox.hgrow="SOMETIMES">
                     <children>
-                        <Label styleClass="header" text="Leverans" />
-                        <Label fx:id="nameLabel" text="namn" />
-                        <Label fx:id="addressLabel" text="address" />
-                        <Label fx:id="postAddressLabel" text="postaddress" />
-                        <Label fx:id="emailLabel" text="e-mail" />
-                        <Label fx:id="phoneLabel" text="telefon" />
-
-                        <Label styleClass="header" text="Betalning" />
-                        <Label fx:id="cardHolderLabel" text="Kortinnehavare" />
-                        <Label fx:id="cardNumberLabel" text="Kortnummer" />
-                        <Label fx:id="validityLabel" text="Giltighet" />
+                  <VBox styleClass="panel">
+                     <children>
+                        <HBox styleClass="header">
+                           <children>
+                                    <Label text="Leverans" />
+                           </children>
+                        </HBox>
+                        <VBox styleClass="panel-content">
+                           <children>
+                                    <Label fx:id="nameLabel" text="namn" />
+                                    <Label fx:id="addressLabel" text="address" />
+                                    <Label fx:id="postAddressLabel" text="postaddress" />
+                                    <Label fx:id="emailLabel" text="e-mail" />
+                                    <Label fx:id="phoneLabel" text="telefon" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <VBox styleClass="panel">
+                     <children>
+                        <HBox styleClass="header">
+                           <children>
+            
+                                    <Label styleClass="header" text="Betalning" />
+                           </children>
+                        </HBox>
+                        <VBox styleClass="panel-content">
+                           <children>
+                                    <Label fx:id="cardHolderLabel" text="Kortinnehavare" />
+                                    <Label fx:id="cardNumberLabel" text="Kortnummer" />
+                                    <Label fx:id="validityLabel" text="Giltighet" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
                     </children>
                 </VBox>
             </children>

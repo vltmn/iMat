@@ -16,59 +16,84 @@
         <Label styleClass="main-header" text="Välj betalningsmetod: " />
         <HBox alignment="CENTER" styleClass="container">
             <children>
-            <HBox HBox.hgrow="NEVER" />
-                <HBox fx:id="savedPane" alignment="TOP_RIGHT" styleClass="input-pane" HBox.hgrow="ALWAYS">
-                    <children>
-                        <RadioButton fx:id="prefilledBtn" mnemonicParsing="false" />
-                        <VBox fx:id="prefilledGrid" alignment="TOP_RIGHT">
-                            <children>
-                                <Label fx:id="nameLabel" text="Name" />
-                                <Label fx:id="cardNumberLabel" />
-                                <Label fx:id="verCodeLabel" />
-                                <Label fx:id="validThruLabel" />
-
-                            </children>
-                        </VBox>
-                    </children>
-                </HBox>
-            <HBox HBox.hgrow="NEVER" />
-                <HBox styleClass="input-pane" HBox.hgrow="ALWAYS">
-                    <children>
-                        <RadioButton fx:id="inputBtn" mnemonicParsing="false" />
-                        <GridPane fx:id="inputGrid" styleClass="input-grid" HBox.hgrow="ALWAYS">
-                            <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                            </rowConstraints>
-                            <columnConstraints>
-                                <ColumnConstraints maxWidth="127.0" minWidth="10.0" prefWidth="127.0" />
-                                <ColumnConstraints hgrow="ALWAYS" maxWidth="250.0" minWidth="10.0" prefWidth="100.0" />
-                            </columnConstraints>
-                            <children>
-                                <Label text="Kortinnehavare" GridPane.halignment="RIGHT" />
-                                <Label text="Kortnummer" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                                <Label text="CVC/CVV-kod" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                                <Label text="Giltighetstid" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                                <TextField fx:id="cardHolderField" GridPane.columnIndex="1" />
-                                <TextField fx:id="cardNoField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                <TextField fx:id="verCodeField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                    <children>
-                                        <TextField fx:id="validMonthField" />
-                                        <Label text="/" />
-                                        <TextField fx:id="validYearField" />
-                                    </children>
-                                </HBox>
-                            </children></GridPane>
-                  <HBox>
-                     <HBox.margin>
-                        <Insets right="100.0" />
-                     </HBox.margin>
+            <VBox styleClass="panel" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox styleClass="header">
+                     <children>
+                        <Label text="Sparade inställningar" />
+                     </children>
                   </HBox>
-                    </children>
-                </HBox>
+                  <HBox styleClass="panel-content">
+                     <children>
+                            <HBox fx:id="savedPane" alignment="TOP_RIGHT" styleClass="input-pane">
+                                <children>
+                                    <RadioButton fx:id="prefilledBtn" mnemonicParsing="false" />
+                                    <VBox fx:id="prefilledGrid" alignment="TOP_RIGHT">
+                                        <children>
+                                            <Label fx:id="nameLabel" text="Name" />
+                                            <Label fx:id="cardNumberLabel" />
+                                            <Label fx:id="verCodeLabel" />
+                                            <Label fx:id="validThruLabel" />
+            
+                                        </children>
+                                    </VBox>
+                                </children>
+                            </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox styleClass="panel" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox styleClass="header">
+                     <children>
+                        <Label text="Manuella inställningar" />
+                     </children>
+                  </HBox>
+                  <HBox styleClass="panel-content">
+                     <children>
+                            <HBox styleClass="input-pane">
+                                <children>
+                                    <RadioButton fx:id="inputBtn" mnemonicParsing="false" />
+                                    <GridPane fx:id="inputGrid" styleClass="input-grid" HBox.hgrow="ALWAYS">
+                                        <rowConstraints>
+                                            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                        </rowConstraints>
+                                        <columnConstraints>
+                                            <ColumnConstraints maxWidth="127.0" minWidth="10.0" prefWidth="127.0" />
+                                            <ColumnConstraints hgrow="ALWAYS" maxWidth="250.0" minWidth="10.0" prefWidth="100.0" />
+                                        </columnConstraints>
+                                        <children>
+                                            <Label text="Kortinnehavare" GridPane.halignment="RIGHT" />
+                                            <Label text="Kortnummer" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                                            <Label text="CVC/CVV-kod" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                                            <Label text="Giltighetstid" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                                            <TextField fx:id="cardHolderField" GridPane.columnIndex="1" />
+                                            <TextField fx:id="cardNoField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                            <TextField fx:id="verCodeField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                            <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                <children>
+                                                    <TextField fx:id="validMonthField" />
+                                                    <Label text="/" />
+                                                    <TextField fx:id="validYearField" />
+                                                </children>
+                                            </HBox>
+                                        </children>
+                              </GridPane>
+                              <HBox>
+                                 <HBox.margin>
+                                    <Insets right="100.0" />
+                                 </HBox.margin>
+                              </HBox>
+                                </children>
+                            </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
             </children>
         </HBox>
     </children>

@@ -23,13 +23,7 @@ public class MainShop extends VBox {
     private final EventHandler<ActionEvent> goToOrderHistory;
 
     @FXML
-    private SplitPane splitPane;
-
-    @FXML
     private FlowPane productFlow;
-
-    @FXML
-    private ScrollPane gridScroll;
 
     @FXML
     private Pane topBarWrapper;
@@ -102,6 +96,7 @@ public class MainShop extends VBox {
             productFilters.put(CATEGORY_FILTER, newValue);
             filter();
         }));
+
         categoriesWrapper.getChildren().add(categoriesList);
     }
 
