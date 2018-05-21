@@ -136,7 +136,7 @@
     -fx-background-color: derive(-fx-main-color, 60%);
 }
 
-.btn.btn-default .label{
+.btn.btn-default .label {
     -fx-text-fill: -fx-base;
 }
 
@@ -165,6 +165,10 @@
 
 .btn.btn-warning .label {
     -fx-text-fill: -fx-base;
+}
+
+.btn.btn-big {
+    -fx-font-size: 24px;
 }
 
 .bg {
@@ -247,8 +251,12 @@
     -fx-font-size: 16px;
 }
 
-.light-box{
+.light-box {
     -fx-background-color: rgba(0,0,0,0.6);
+}
+
+.shadow {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, -5, 5);
 }
 
 .panel {
@@ -267,4 +275,8 @@
 }
 .panel>.panel-content {
     -fx-padding: 8px;
+}
+
+.thanks-screen {
+    -fx-background-radius: 5px;
 }
