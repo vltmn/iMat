@@ -16,10 +16,7 @@ import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -61,6 +58,7 @@ public class CategoriesList extends VBox {
                 .map(Product::getCategory)
                 .distinct()
                 .map(pc -> new CategoriesListRow(pc.name(), selectionFunction))
+                .sorted(Comparator.comparing(CategoriesListRow::getLabelName))
                 .collect(Collectors.toList()));
         listPane.getChildren().addAll(rows);
         allProductsRow.setSelected(true);
@@ -121,8 +119,10 @@ public class CategoriesList extends VBox {
             selected.addListener((observable, oldValue, newValue) -> {
                 if (newValue) {
                     icon.setIconCode(FontAwesome.CHECK_CIRCLE_O);
+                    this.getStyleClass().add("selected");
                 } else {
                     icon.setIconCode(FontAwesome.CIRCLE_O);
+                    this.getStyleClass().removeIf(s -> s.equalsIgnoreCase("selected"));
                 }
             });
             selected.addListener((observable, oldValue, newValue) -> {
