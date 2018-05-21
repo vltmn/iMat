@@ -19,6 +19,8 @@ import java.util.stream.Collectors;
 public class MainShop extends VBox {
     private static final String SEARCH_FILTER = "SEARCH";
     public static final String CATEGORY_FILTER = "CATEGORY";
+    private final EventHandler<ActionEvent> goToProfile;
+    private final EventHandler<ActionEvent> goToOrderHistory;
 
     @FXML
     private SplitPane splitPane;
@@ -54,8 +56,10 @@ public class MainShop extends VBox {
     private List<ProductCard> allProducts = new ArrayList<>();
     private EventHandler<ActionEvent> goToOrderProcess;
 
-    public MainShop(EventHandler<ActionEvent> goToOrderProcess) {
+    public MainShop(EventHandler<ActionEvent> goToOrderProcess, EventHandler<ActionEvent> goToProfile, EventHandler<ActionEvent> goToOrderHistory) {
+        this.goToOrderHistory = goToOrderHistory;
         this.goToOrderProcess = goToOrderProcess;
+        this.goToProfile = goToProfile;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/screen/main_shop.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -117,5 +121,16 @@ public class MainShop extends VBox {
                 .sorted(Comparator.comparing(Product::getName))
                 .map(ProductCard::new).collect(Collectors.toList());
         allProducts.forEach(productCard -> productFlow.getChildren().add(productCard));
+    }
+
+    @FXML
+    private void onMyProfileClick() {
+        goToProfile.handle(null);
+    }
+
+    @FXML
+    private void onOrderHistoryClicked() {
+        goToOrderHistory.handle(null);
+
     }
 }

@@ -24,7 +24,7 @@ public class RootController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        mainPane = new MainShop(event -> orderProcess.toFront());
+        mainPane = new MainShop(event -> orderProcess.toFront(), event ->  profilePane.toFront(), event -> {});
         welcomePane = new Welcome(event -> mainPane.toFront());
         profilePane = new Profile(event -> mainPane.toFront());
 
