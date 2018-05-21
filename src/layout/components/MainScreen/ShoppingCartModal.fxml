@@ -15,7 +15,7 @@
                 </VBox>
             </content>
         </ScrollPane>
-      <HBox prefHeight="0.0" prefWidth="200.0">
+      <HBox fx:id="shoppingCartBtns" prefHeight="0.0" prefWidth="200.0">
          <children>
             <Button mnemonicParsing="false" onAction="#onGoToChartClicked" text="Gå till kassan" HBox.hgrow="SOMETIMES" />
             <Button mnemonicParsing="false" onAction="#onClearCartClicked" text="Rensa varukorg" HBox.hgrow="SOMETIMES" />

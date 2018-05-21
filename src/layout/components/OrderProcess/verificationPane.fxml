@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root styleClass="order-process-step" stylesheets="@../../styles.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root stylesheets="@../../styles.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Label styleClass="main-header" text="Bekräfta din order" />
-        <HBox styleClass="confirm-wrapper">
+        <HBox alignment="TOP_CENTER" styleClass="container">
             <children>
-                <VBox>
+                <VBox fx:id="orderBox" styleClass="confirm-pane" HBox.hgrow="SOMETIMES">
                     <Label styleClass="header" text="Din beställning" />
+               <HBox.margin>
+                  <Insets left="-20.0" />
+               </HBox.margin>
 
                 </VBox>
-                <VBox>
+                <VBox styleClass="confirm-pane" HBox.hgrow="SOMETIMES">
                     <children>
                         <Label styleClass="header" text="Leverans" />
                         <Label fx:id="nameLabel" text="namn" />
@@ -31,4 +36,9 @@
             </children>
         </HBox>
     </children>
+   <styleClass>
+      <String fx:value="order-process-step" />
+      <String fx:value="bg" />
+      <String fx:value="confirm" />
+   </styleClass>
 </fx:root>

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<fx:root stylesheets="@../styles.css" type="StackPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root styleClass="cart-row-cell" stylesheets="@../styles.css" type="StackPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox fx:id="undoPane" alignment="CENTER">
          <children>
@@ -30,7 +30,7 @@
             <String fx:value="undo" />
          </styleClass>
       </HBox>
-      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="8.0">
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="8.0" styleClass="bg">
           <children>
               <ImageView fx:id="productImage" fitHeight="70.0" fitWidth="70.0" />
               <VBox fx:id="nameAndQtyPane" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
@@ -57,10 +57,6 @@
                </padding>
             </VBox>
           </children>
-         <styleClass>
-            <String fx:value="cart-row-cell" />
-            <String fx:value="bg" />
-         </styleClass>
       
       </HBox>
    </children>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,21 +9,32 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root styleClass="bg" stylesheets="@../styles.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <AnchorPane prefHeight="100.0" prefWidth="400.0">
-         <children>
-            <Label text="status" />
-         </children>
-      </AnchorPane>
-      <StackPane fx:id="orderStack" />
-      <HBox alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS">
-         <children>
-            <Button fx:id="backBtn" mnemonicParsing="false" text="Stäng" />
-            <Pane HBox.hgrow="ALWAYS" />
-            <Button fx:id="forwardBtn" mnemonicParsing="false" text="Gå vidare" />
-         </children>
-      </HBox>
-   </children>
 
+<fx:root styleClass="modal-wrapper" stylesheets="@../styles.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox VBox.vgrow="ALWAYS">
+         <children>
+            <AnchorPane prefHeight="100.0" prefWidth="400.0">
+               <children>
+                  <Label text="status" />
+               </children>
+            </AnchorPane>
+            <StackPane fx:id="orderStack" VBox.vgrow="ALWAYS" />
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+               <children>
+                  <Pane HBox.hgrow="ALWAYS" />
+                  <Button fx:id="backBtn" mnemonicParsing="false" styleClass="btn" text="Stäng" />
+                  <Pane HBox.hgrow="ALWAYS" />
+                  <Button fx:id="forwardBtn" mnemonicParsing="false" styleClass="btn" text="Gå vidare" />
+                  <Pane HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+         </children>
+         <styleClass>
+            <String fx:value="bg" />
+            <String fx:value="order-process" />
+         </styleClass>
+      
+      </VBox>
+   </children>
 </fx:root>

@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import main.components.MainScreen.ShoppingCartModal;
 import main.util.BackendUtil;
 import se.chalmers.cse.dat216.project.CreditCard;
 import se.chalmers.cse.dat216.project.Customer;
@@ -11,7 +12,7 @@ import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 import java.io.IOException;
 
-public class VerificationPane extends VBox {
+public class ConfirmationPane extends VBox {
     @FXML
     private Label nameLabel;
     @FXML
@@ -29,7 +30,10 @@ public class VerificationPane extends VBox {
     @FXML
     private Label validityLabel;
 
-    public VerificationPane() {
+    @FXML
+    private VBox orderBox;
+
+    public ConfirmationPane() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/OrderProcess/verificationPane.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -39,6 +43,9 @@ public class VerificationPane extends VBox {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        ShoppingCartModal scm = new ShoppingCartModal();
+        scm.setButtonVisibility(false);
+        orderBox.getChildren().add(scm);
     }
     public void show() {
         Customer customer = IMatDataHandler.getInstance().getCustomer();

@@ -2,7 +2,6 @@ package main.Screen;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,7 +11,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import main.components.OrderProcess.DeliveryPane;
 import main.components.OrderProcess.PaymentPane;
-import main.components.OrderProcess.VerificationPane;
+import main.components.OrderProcess.ConfirmationPane;
 
 import java.io.IOException;
 
@@ -30,7 +29,7 @@ public class OrderProcess extends VBox {
     private Button backBtn;
     @FXML
     private Button forwardBtn;
-    private VerificationPane verificationPane;
+    private ConfirmationPane confirmationPane;
     private EventHandler<ActionEvent> doneHandler;
 
     public OrderProcess(EventHandler<ActionEvent> doneHandler) {
@@ -90,10 +89,10 @@ public class OrderProcess extends VBox {
                 case 2:
                     complete = paymentPane.complete();
                     if(!complete) return;
-                    verificationPane.show();
+                    confirmationPane.show();
                     break;
                 case 3:
-                    verificationPane.complete();
+                    confirmationPane.complete();
                     doneHandler.handle(event);
                     resetView();
                     break;
@@ -115,8 +114,8 @@ public class OrderProcess extends VBox {
 
         paymentPane = new PaymentPane();
         deliveryPane = new DeliveryPane();
-        verificationPane = new VerificationPane();
+        confirmationPane = new ConfirmationPane();
 //        orderStack.getChildren().addAll(paymentPane, deliveryPane);
-        orderStack.getChildren().addAll(verificationPane, paymentPane, deliveryPane);
+        orderStack.getChildren().addAll(confirmationPane, paymentPane, deliveryPane);
     }
 }

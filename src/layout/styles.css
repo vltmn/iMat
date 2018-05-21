@@ -5,8 +5,6 @@
     -fx-dark-color: #2B303A;
     -fx-light-color: rgba(255,255,255, .9);
     -fx-base: white;
-    -fx-main-hover: derive(-fx-main-color, 30%);
-    -fx-main-pressed: derive(-fx-main-hover, 20%);
     -fx-text-dark: -fx-dark-color;
     -fx-text-fill: -fx-text-dark;
 
@@ -37,24 +35,62 @@
 
 .edit-quantity .text-field {
     -fx-border-radius: 0;
-    -fx-border-width: 0;
+    -fx-border-width: 1px;
     -fx-background-color: -fx-base;
     -fx-border-color: rgba(0,0,0,0.2);
 }
 
 .order-process-step {
-    -fx-background-color: -fx-base;
+    -fx-padding: 16px;
+    -fx-spacing: 30px;
+}
+
+.order-process-step .input-grid {
+    -fx-hgap: 12px;
+    -fx-vgap: 8px;
+}
+
+.order-process-step .container {
+    -fx-padding: 20px;
+    -fx-spacing: 70px;
+}
+
+.order-process-step.confirm {
+    -fx-font-size: 16px;
+}
+
+.order-process-step.confirm .header {
+    -fx-font-size: 18px;
+}
+
+.order-process-step.confirm .confirm-pane {
+    -fx-spacing: 4px;
+}
+
+.order-process-step .input-pane {
+    -fx-font-size: 16px;
+}
+
+.modal-wrapper {
+    -fx-padding: 20px;
+    -fx-background-color: rgba(0,0,0,0.5);
+}
+
+.order-process {
+    -fx-background-radius: 5px;
+    -fx-padding: 8px;
+}
+.order-process .btn {
+    -fx-font-size: 18px;
 }
 
 .btn {
     -fx-font-size: 14px;
     -fx-background-color: -fx-base;
-    /*-fx-background-color: -fx-main-color;*/
     -fx-background-radius: 0;
-    -fx-border-radius: 0;
-    -fx-border-width: 2px;
-    -fx-border-color: -fx-main-color;
-    /*-fx-text-fill: -fx-light-color;*/
+    -fx-border-radius: 4px;
+    -fx-border-width: 1px;
+    -fx-border-color: rgba(0,0,0,0.15);
     -fx-text-fill: -fx-main-color;
 
 }
@@ -64,11 +100,11 @@
 }
 
 .btn:hover {
-    -fx-background-color: -fx-main-hover;
+    -fx-background-color: derive(-fx-main-color, 125%);
 }
 
 .btn:pressed {
-    -fx-background-color: -fx-main-pressed;
+    -fx-background-color: derive(-fx-main-color, 105%);
 }
 
 .btn.btn-default {
@@ -78,11 +114,11 @@
 }
 
 .btn.btn-default:hover {
-    -fx-background-color: -fx-main-hover;
+    -fx-background-color: derive(-fx-main-color, 30%);
 }
 
 .btn.btn-default:pressed {
-    -fx-background-color: -fx-main-pressed;
+    -fx-background-color: derive(-fx-main-color, 60%);
 }
 
 .btn.btn-default .label{

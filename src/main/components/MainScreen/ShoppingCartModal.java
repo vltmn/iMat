@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.components.CartRowCell;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
@@ -24,6 +25,9 @@ public class ShoppingCartModal extends VBox {
 
     @FXML
     private ScrollPane cartScrollPane;
+
+    @FXML
+    private HBox shoppingCartBtns;
 
     private EventHandler<ActionEvent> showChartEvent;
     private List<CartRowCell> crcs = new ArrayList<>();
@@ -51,7 +55,7 @@ public class ShoppingCartModal extends VBox {
 
     public ShoppingCartModal(EventHandler<ActionEvent> showChartEvent, NumberExpression ne) {
         this(showChartEvent);
-        cartScrollPane.maxHeightProperty().bind(ne.subtract(40));
+        cartScrollPane.maxHeightProperty().bind(ne);
     }
     private void updateList() {
 
@@ -70,6 +74,10 @@ public class ShoppingCartModal extends VBox {
     private void initializeList() {
         crcs = IMatDataHandler.getInstance().getProducts().stream()
                 .map(CartRowCell::new).collect(Collectors.toList());
+    }
+
+    public void setButtonVisibility(boolean visible) {
+        shoppingCartBtns.setVisible(visible);
     }
 
     @FXML
