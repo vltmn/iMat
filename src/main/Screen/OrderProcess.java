@@ -7,11 +7,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import main.components.OrderProcess.DeliveryPane;
 import main.components.OrderProcess.PaymentPane;
 import main.components.OrderProcess.ConfirmationPane;
+import main.components.OrderProcess.SequenceMap;
 
 import java.io.IOException;
 
@@ -27,11 +27,15 @@ public class OrderProcess extends VBox {
     private ObjectProperty<Integer> currentStep = new SimpleIntegerProperty(1).asObject();
     @FXML
     private Button backBtn;
+
+    @FXML
+    private Pane sequenceMapWrapper;
     @FXML
     private Button forwardBtn;
     private ConfirmationPane confirmationPane;
     private EventHandler<ActionEvent> doneHandler;
     private EventHandler<ActionEvent> closeHandler;
+    private SequenceMap sequenceMap;
 
     public OrderProcess(EventHandler<ActionEvent> doneHandler, EventHandler<ActionEvent> closeHandler) {
         this.doneHandler = doneHandler;
@@ -62,6 +66,7 @@ public class OrderProcess extends VBox {
             } else {
                 forwardBtn.textProperty().setValue("Gå vidare");
             }
+            sequenceMap.setStep(newValue);
         });
         backBtn.setOnAction(event -> {
             switch(currentStep.get()) {
@@ -97,7 +102,7 @@ public class OrderProcess extends VBox {
                     confirmationPane.complete();
                     doneHandler.handle(event);
                     resetView();
-                    break;
+                    return;
             }
             currentStep.setValue(currentStep.get() + 1);
         });
@@ -107,12 +112,16 @@ public class OrderProcess extends VBox {
         currentStep = new SimpleIntegerProperty(1).asObject();
         forwardBtn.textProperty().setValue("Gå vidare");
         orderStack.getChildren().clear();
+        sequenceMapWrapper.getChildren().clear();
         addScreens();
         initBtns();
     }
 
     private void addScreens() {
-
+        sequenceMap = new SequenceMap();
+        HBox.setHgrow(sequenceMap, Priority.ALWAYS);
+        sequenceMapWrapper.getChildren().add(sequenceMap);
+        sequenceMap.setStep(1);
         paymentPane = new PaymentPane();
         deliveryPane = new DeliveryPane();
         confirmationPane = new ConfirmationPane();

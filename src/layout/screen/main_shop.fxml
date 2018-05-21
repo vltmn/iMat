@@ -16,12 +16,12 @@
     <children>
         <HBox fx:id="topBarWrapper" spacing="8.0" styleClass="top-bar">
          <children>
-            <ImageView fitHeight="40.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="40.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/logo.png" />
                </image>
                <HBox.margin>
-                  <Insets right="40.0" />
+                  <Insets right="20.0" />
                </HBox.margin>
             </ImageView>
             <Button mnemonicParsing="false" onAction="#onMyProfileClick" prefHeight="40.0" text="Min profil">

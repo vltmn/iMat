@@ -284,3 +284,28 @@
 .thanks-screen {
     -fx-background-radius: 5px;
 }
+
+.sequence-map .line {
+    -fx-background-color: -fx-base;
+    -fx-border-width: 1px 0;
+    -fx-border-color: #BBB;
+    -fx-max-height: 15px;
+}
+
+.sequence-map .line.filled {
+    -fx-background-color: -fx-main-color;
+}
+
+.sequence-map .circle {
+    -fx-fill: -fx-base;
+    -fx-stroke: #777;
+}
+
+.sequence-map .circle.filled {
+    -fx-fill: -fx-main-color;
+}
+
+.sequence-map .label {
+    -fx-padding: 60px 0 0 0;
+    -fx-font-size: 16px;
+}
