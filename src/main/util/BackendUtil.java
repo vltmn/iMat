@@ -1,15 +1,20 @@
 package main.util;
 
+import javafx.animation.PauseTransition;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.*;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.function.Consumer;
 
 public class BackendUtil {
     private static BackendUtil ourInstance = new BackendUtil();
@@ -17,6 +22,10 @@ public class BackendUtil {
     public static BackendUtil getInstance() {
         return ourInstance;
     }
+
+    private final ObservableList<ShoppingItem> undoQueue = FXCollections.observableArrayList(new ArrayList<>());
+
+    private final Map<Product, PauseTransition> undoTimers = new HashMap<>();
 
     private BackendUtil() {
     }
@@ -83,6 +92,32 @@ public class BackendUtil {
         return shoppingItem;
     }
 
+    public void addToUndoList(Product p, Consumer<Product> onRemovedFromUndo) {
+        PauseTransition pt = new PauseTransition(Duration.seconds(1.5));
+        undoTimers.put(p, pt);
+        Optional<ShoppingItem> sci = IMatDataHandler.getInstance().getShoppingCart().getItems().stream()
+                .filter(si -> si.getProduct().equals(p))
+                .findAny();
+        if(!sci.isPresent()) return;
+        ShoppingItem shoppingItem = sci.get();
+        undoQueue.add(shoppingItem);
+        pt.onFinishedProperty().setValue(event -> {
+            undoQueue.remove(shoppingItem);
+            setProductAmount(p, 0);
+            undoTimers.remove(p);
+        });
+        pt.playFromStart();
+    }
+
+    public void stopRemoval(Product p) {
+        if(!undoTimers.containsKey(p)) return;
+        PauseTransition pt = undoTimers.get(p);
+        pt.stop();
+        undoTimers.remove(p);
+        double productCartAmount = getProductCartAmount(p);
+        setProductAmount(p, 1);
+        setProductAmount(p, productCartAmount);
+    }
     private static double round(double value, int precision) {
         int scale = (int) Math.pow(10, precision);
         return (double) Math.round(value * scale) / scale;

@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import main.util.BackendUtil;
 import main.util.MiscUtil;
@@ -18,7 +19,7 @@ import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
 
-public class CartRowCell extends HBox {
+public class CartRowCell extends StackPane {
 
     private Product product;
     @FXML
@@ -32,6 +33,9 @@ public class CartRowCell extends HBox {
 
     @FXML
     private VBox nameAndQtyPane;
+
+    @FXML
+    private HBox undoPane;
 
     private EditQuantity editQuantity;
 
@@ -47,18 +51,36 @@ public class CartRowCell extends HBox {
         }
         this.product = p;
         initData();
+
     }
 
     private void initData() {
         productName.setText(product.getName());
         Image prodImage = IMatDataHandler.getInstance().getFXImage(product, productImage.getFitWidth(), productImage.getFitHeight());
         productImage.setImage(prodImage);
-        editQuantity = new EditQuantity(product, false);
+        editQuantity = new EditQuantity(product, false, product -> undoFn());
         nameAndQtyPane.getChildren().add(editQuantity);
     }
 
     public void updateData() {
         totalLabel.setText(MiscUtil.getInstance().formatAsCurrency(BackendUtil.getInstance().getProductCartAmount(product) * product.getPrice()));
+    }
+    private boolean undoFn() {
+        if(BackendUtil.getInstance().getProductCartAmount(product) == 0) return true;
+        undoPane.toFront();
+        BackendUtil.getInstance().addToUndoList(product, p -> undoPane.toBack());
+        return false;
+    }
+
+    @FXML
+    private void onUndoClick() {
+        BackendUtil.getInstance().stopRemoval(product);
+        undoPane.toBack();
+    }
+
+    @FXML
+    private void onRemoveClick() {
+        undoFn();
     }
 
     public int getProductId() {

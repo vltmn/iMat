@@ -1,6 +1,7 @@
 * {
     -fx-main-color: #0C7C59;
     -fx-accent-color: #D64933;
+    -fx-warning-color: -fx-accent-color;
     -fx-dark-color: #2B303A;
     -fx-light-color: rgba(255,255,255, .9);
     -fx-base: white;
@@ -46,6 +47,7 @@
 }
 
 .btn {
+    -fx-font-size: 14px;
     -fx-background-color: -fx-main-color;
     -fx-background-radius: 0;
     -fx-border-radius: 0;
@@ -68,6 +70,17 @@
     -fx-fill: -fx-base;
 }
 
+.btn.btn-warning {
+    -fx-background-color: -fx-warning-color;
+}
+
+.btn.btn-warning:hover {
+    -fx-background-color: derive(-fx-warning-color, -20%);
+}
+
+.btn.btn-warning:pressed {
+    -fx-background-color: derive(-fx-warning-color, -40%);
+}
 
 .bg {
     -fx-background-color: -fx-base;

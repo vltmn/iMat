@@ -15,6 +15,7 @@ import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 
 import java.io.IOException;
+import java.util.function.Function;
 
 //TODO fix editing textfield, hide commas if discrete amount
 
@@ -33,6 +34,8 @@ public class EditQuantity extends HBox {
     private EventHandler<MouseEvent> addEvent;
     private EventHandler<MouseEvent> subEvent;
 
+    private Function<Product, Boolean> onRemovedFn = p -> true;
+
     private EditQuantity() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/EditQuantity.fxml"));
         loader.setRoot(this);
@@ -47,13 +50,14 @@ public class EditQuantity extends HBox {
         subBtn.setOnAction(event -> subEvent.handle(null));
     }
 
-    public EditQuantity(Product p, boolean removeItemIfEmpty) {
+    public EditQuantity(Product p, boolean removeItemIfEmpty, Function<Product, Boolean> onRemovedFn) {
         this();
         double editAmount = MiscUtil.getInstance().getProductEditAmount(p);
         EventHandler<MouseEvent> addEvent = event -> qtyField.setText(MiscUtil.getInstance().formatAsAmount(getCartQty(p) + editAmount));
         EventHandler<MouseEvent> subEvent = event -> qtyField.setText(MiscUtil.getInstance().formatAsAmount(getCartQty(p) - editAmount));
         this.addEvent = addEvent;
         this.subEvent = subEvent;
+        this.onRemovedFn = onRemovedFn;
         IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(cartEvent -> {
             double cartQty = getCartQty(p);
             if (cartQty == 0) subBtn.disableProperty().setValue(true);
@@ -83,6 +87,7 @@ public class EditQuantity extends HBox {
             }
             double value = Double.parseDouble(newValue);
             if(value == getCartQty(p)) return;
+            if(value == 0 && !this.onRemovedFn.apply(p)) return;
             BackendUtil.getInstance().setProductAmount(p, value);
 
         });
@@ -91,6 +96,10 @@ public class EditQuantity extends HBox {
 
     public EditQuantity(Product p) {
         this(p, true);
+    }
+
+    public EditQuantity(Product p, boolean removeIfEmpty) {
+        this(p, removeIfEmpty, product -> true);
     }
 
     private double getCartQty(Product p) {
