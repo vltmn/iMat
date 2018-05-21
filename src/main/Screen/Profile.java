@@ -54,8 +54,10 @@ public class Profile extends VBox {
     private TextField validMonthField;
     @FXML
     private TextField validYearField;
+    private EventHandler<ActionEvent> closeFn;
 
     public Profile(EventHandler<ActionEvent> closeFn) {
+        this.closeFn = closeFn;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/screen/profile.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -67,6 +69,11 @@ public class Profile extends VBox {
         }
         populatePersonalVbox();
         populatePersonal();
+        addBtnHandlers();
+    }
+
+    private void addBtnHandlers() {
+        cancelBtn.onActionProperty().setValue(event -> closeFn.handle(event));
     }
 
     private void populatePersonal() {

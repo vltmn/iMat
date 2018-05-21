@@ -20,19 +20,17 @@ public class RootController implements Initializable {
 
     private Profile profilePane;
     private OrderProcess orderProcess;
+    private OrderHistory orderHistory;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        mainPane = new MainShop(event -> orderProcess.toFront(), event ->  profilePane.toFront(), event -> {});
+        mainPane = new MainShop(event -> orderProcess.toFront(), event ->  profilePane.toFront(), event -> orderHistory.toFront());
         welcomePane = new Welcome(event -> mainPane.toFront());
         profilePane = new Profile(event -> mainPane.toFront());
-
-        orderProcess = new OrderProcess(event -> {
-            mainPane.toFront();
-
-        });
-        rootPane.getChildren().addAll(mainPane, welcomePane, profilePane, orderProcess);
+        orderHistory = new OrderHistory();
+        orderProcess = new OrderProcess(event -> mainPane.toFront());
+        rootPane.getChildren().addAll(mainPane, welcomePane, profilePane, orderProcess, orderHistory);
         welcomePane.toFront();
         mainPane.toFront();
 //        profilePane.toFront();

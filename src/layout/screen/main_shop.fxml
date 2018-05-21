@@ -13,13 +13,13 @@
     <children>
         <HBox fx:id="topBarWrapper" spacing="8.0" styleClass="top-bar">
          <children>
-            <Button mnemonicParsing="false" prefHeight="40.0" onAction="#onMyProfileClick" text="Min profil">
+            <Button mnemonicParsing="false" onAction="#onMyProfileClick" prefHeight="40.0" text="Min profil">
                <styleClass>
                   <String fx:value="btn" />
                   <String fx:value="btn-default" />
                </styleClass>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" onAction="#onOrderHistoryClicked" text="Orderhistorik">
+            <Button mnemonicParsing="false" onAction="#onOrderHistoryClicked" prefHeight="40.0" text="Orderhistorik">
                <styleClass>
                   <String fx:value="btn" />
                   <String fx:value="btn-default" />

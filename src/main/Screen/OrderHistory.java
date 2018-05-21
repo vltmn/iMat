@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import main.components.MainScreen.ShoppingCartModal;
 import main.components.OrderHistory.HistoryProduct;
 import main.components.OrderHistory.PrevOrder;
+import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Order;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
@@ -35,6 +36,10 @@ public class OrderHistory extends HBox{
         this.orders = orders;
         populateHistoryList();
         this.getChildren().add(new ShoppingCartModal());
+    }
+
+    public OrderHistory() {
+        this(IMatDataHandler.getInstance().getOrders());
     }
 
     private void populateHistoryList(){
