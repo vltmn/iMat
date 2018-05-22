@@ -93,7 +93,7 @@ public class PaymentPane extends VBox {
         }
         prefilledBtn.setSelected(true);
         nameLabel.setText(card.getHoldersName());
-        cardNumberLabel.setText(card.getCardType());
+        cardNumberLabel.setText(card.getCardNumber());
         verCodeLabel.setText(String.valueOf(card.getVerificationCode()));
         validThruLabel.setText(BackendUtil.getInstance().getCreditCardValidity(card));
     }
