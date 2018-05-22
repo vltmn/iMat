@@ -58,7 +58,8 @@ public class CategoriesList extends VBox {
                 .map(Product::getCategory)
                 .distinct()
                 .map(pc -> new CategoriesListRow(pc.name(), selectionFunction))
-                .sorted(Comparator.comparing(CategoriesListRow::getLabelName))
+                .sorted(Comparator.comparing(CategoriesListRow::getShowingName)
+                )
                 .collect(Collectors.toList()));
         listPane.getChildren().addAll(rows);
         allProductsRow.setSelected(true);
@@ -161,6 +162,10 @@ public class CategoriesList extends VBox {
 
         String getLabelName() {
             return labelName;
+        }
+
+        String getShowingName() {
+            return name.getText();
         }
     }
 }

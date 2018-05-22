@@ -27,7 +27,7 @@ public class PaymentPane extends VBox {
     @FXML
     private Label validThruLabel;
     @FXML
-    private VBox prefilledGrid;
+    private GridPane prefilledGrid;
     @FXML
     private RadioButton inputBtn;
     @FXML

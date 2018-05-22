@@ -34,7 +34,7 @@ public class DeliveryPane extends VBox {
     @FXML
     private RadioButton inputBtn;
     @FXML
-    private VBox prefilledGrid;
+    private GridPane prefilledGrid;
     @FXML
     private TextField firstNameField;
     @FXML
