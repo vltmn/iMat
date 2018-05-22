@@ -43,7 +43,7 @@ public class RootController implements Initializable {
         }, event -> mainPane.toFront());
         rootPane.getChildren().addAll(mainPane, welcomePane, profilePane, orderProcess, orderHistory, thanksPane);
         welcomePane.toFront();
-        mainPane.toFront();
+//        mainPane.toFront();
 //        profilePane.toFront();
 
 

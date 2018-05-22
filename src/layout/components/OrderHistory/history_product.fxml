@@ -23,6 +23,6 @@
       <Label fx:id="ammountLabel" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
       <Label fx:id="productNameLabel" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
       <Label fx:id="priceLabel" text="Label" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
-      <Button fx:id="addButton" mnemonicParsing="false" onAction="#addToCart" text="Lägg till" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
+      <Button fx:id="addButton" mnemonicParsing="false" onAction="#addToCart" styleClass="btn" text="Lägg till" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
    </children>
 </fx:root>

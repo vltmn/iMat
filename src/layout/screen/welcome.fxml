@@ -1,15 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<fx:root alignment="CENTER" prefHeight="560.0" prefWidth="840.0" style="-fx-background-color: teal;" stylesheets="@../styles.css" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="CENTER" prefHeight="560.0" prefWidth="840.0" stylesheets="@../styles.css" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="Välkommen till iMat!" />
-      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: cyan;" />
-      <Button fx:id="StartShoppingBtn" layoutX="371.0" layoutY="435.0" mnemonicParsing="false" text="Börja handla!" />
+      <HBox alignment="CENTER" spacing="30.0">
+         <children>
+            <Label alignment="CENTER" text="Välkommen till">
+               <font>
+                  <Font size="70.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <Pane prefHeight="100.0" />
+      <HBox alignment="CENTER" spacing="50.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/devices_icon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/groceries.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/delivery.png" />
+               </image>
+            </ImageView>
+         </children></HBox>
+      <HBox alignment="TOP_CENTER" spacing="200.0">
+         <children>
+            <Label text="1">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label text="2">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label text="3">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Pane prefHeight="100.0" />
+      <Button fx:id="StartShoppingBtn" alignment="CENTER" layoutX="371.0" layoutY="435.0" mnemonicParsing="false" text="Börja handla!">
+         <styleClass>
+            <String fx:value="btn" />
+            <String fx:value="btn-big" />
+         </styleClass></Button>
 
    </children>
+   <styleClass>
+      <String fx:value="bg" />
+      <String fx:value="welcome" />
+   </styleClass>
 </fx:root>
