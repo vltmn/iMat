@@ -1,5 +1,8 @@
 package main.components;
 
+import javafx.animation.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Cell;
@@ -10,12 +13,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import main.util.BackendUtil;
 import main.util.MiscUtil;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ShoppingItem;
-
 
 import java.io.IOException;
 
@@ -65,13 +68,41 @@ public class CartRowCell extends StackPane {
     public void updateData() {
         totalLabel.setText(MiscUtil.getInstance().formatAsCurrency(BackendUtil.getInstance().getProductCartAmount(product) * product.getPrice()));
     }
-    private boolean undoFn() {
-        if(BackendUtil.getInstance().getProductCartAmount(product) == 0) return true;
-//        undoPane.toFront();
-//        BackendUtil.getInstance().addToUndoList(product, p -> undoPane.toBack());
 
-        BackendUtil.getInstance().removedUndoHandler(product);
+    private boolean undoFn() {
+        if (BackendUtil.getInstance().getProductCartAmount(product) == 0) return true;
+
+        double containerHeight = getHeight();
+        animateVisibilty(containerHeight, true, event -> {
+            BackendUtil.getInstance().removedUndoHandler(product, event1 -> {
+                animateVisibilty(containerHeight, false, event2 -> {});
+            });
+        });
         return false;
+    }
+
+    public void animateVisibilty(double containerHeight, boolean toRemovedState, EventHandler<ActionEvent> onFinished) {
+        Duration dur = Duration.millis(150);
+        this.prefHeightProperty().setValue(containerHeight);
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO,
+                        new KeyValue(this.translateXProperty(), 0, Interpolator.EASE_BOTH),
+                        new KeyValue(this.prefHeightProperty(), containerHeight, Interpolator.EASE_BOTH)),
+                new KeyFrame(dur,
+                        new KeyValue(this.translateXProperty(), this.getWidth(), Interpolator.EASE_BOTH),
+                        new KeyValue(this.prefHeightProperty(), containerHeight, Interpolator.EASE_BOTH)),
+                new KeyFrame(dur.multiply(2),
+                        new KeyValue(this.prefHeightProperty(), 0, Interpolator.EASE_BOTH)
+                )
+        );
+        timeline.setOnFinished(onFinished);
+        if(!toRemovedState) {
+            timeline.setRate( -1);
+            timeline.jumpTo(timeline.getTotalDuration());
+        }
+
+        timeline.play();
     }
 
     @FXML

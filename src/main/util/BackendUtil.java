@@ -8,6 +8,8 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.util.Duration;
 import main.components.SnackBar;
 import main.util.snackbar.SnackBarHandler;
@@ -111,7 +113,8 @@ public class BackendUtil {
         pt.playFromStart();
     }
 
-    public void removedUndoHandler(Product p) {
+
+    public void removedUndoHandler(Product p, EventHandler<ActionEvent> undoFn) {
         Optional<ShoppingItem> oSi = IMatDataHandler.getInstance().getShoppingCart().getItems().stream().filter(sci -> sci.getProduct().getProductId() == p.getProductId())
                 .findAny();
         if(!oSi.isPresent()) return;
@@ -119,7 +122,11 @@ public class BackendUtil {
         IMatDataHandler.getInstance().getShoppingCart().removeItem(si);
         SnackBarHandler.getInstance().showProductUndoSnackbar(si, event -> {
             setProductAmount(si.getProduct(), si.getAmount());
+            undoFn.handle(event);
         });
+    }
+    public void removedUndoHandler(Product p) {
+        removedUndoHandler(p, event -> {});
     }
 
     public void stopRemoval(Product p) {
