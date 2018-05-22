@@ -8,6 +8,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import se.chalmers.cse.dat216.project.CreditCard;
+import se.chalmers.cse.dat216.project.Customer;
+import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 import java.io.IOException;
 
@@ -68,7 +71,7 @@ public class Profile extends VBox {
             throw new RuntimeException(e);
         }
         populatePersonalVbox();
-        populatePersonal();
+        populatePayment();
         addBtnHandlers();
     }
 
@@ -76,19 +79,30 @@ public class Profile extends VBox {
         cancelBtn.onActionProperty().setValue(event -> closeFn.handle(event));
     }
 
-    private void populatePersonal() {
-
-
-//        paymentVbox.getChildren().addAll(paymentInputs.values());
+    private void populatePayment() {
+        CreditCard c = IMatDataHandler.getInstance().getCreditCard();
+        cardHolderField.setText(c.getHoldersName());
+        cardNumberField.setText(c.getCardNumber());
+        verCodeField.setText(String.valueOf(c.getVerificationCode()));
+        validMonthField.setText(String.valueOf(c.getValidMonth()));
+        validYearField.setText(String.valueOf(c.getValidYear()));
     }
 
     private void populatePersonalVbox() {
+        Customer c = IMatDataHandler.getInstance().getCustomer();
+        firstNameField.setText(c.getFirstName());
+        lastNameField.setText(c.getLastName());
+        phoneField.setText(c.getPhoneNumber());
+        emailField.setText(c.getEmail());
+        addressField.setText(c.getAddress());
+        postCodeField.setText(c.getPostCode());
+        stateField.setText(c.getPostAddress());
 
-//        personalVbox.getChildren().addAll(personalInputs.values());
     }
 
     private void saveData() {
         //TODO
+
     }
 
 }

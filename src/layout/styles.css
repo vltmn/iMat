@@ -56,6 +56,10 @@
     -fx-vgap: 8px;
 }
 
+.profile .input-grid {
+    -fx-font-size: 16px;
+}
+
 .order-process-step .container {
     -fx-padding: 20px;
     -fx-spacing: 70px;
@@ -87,7 +91,7 @@
     -fx-padding: 8px;
 }
 
-.order-process .btn {
+.order-process .btn, .profile .btn {
     -fx-font-size: 20px;
 }
 
