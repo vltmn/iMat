@@ -77,7 +77,15 @@ public class ShoppingCartModal extends VBox {
     }
 
     public void setButtonVisibility(boolean visible) {
-        shoppingCartBtns.setVisible(visible);
+        if (!visible){
+            shoppingCartBtns.setVisible(visible);
+            this.getChildren().remove(shoppingCartBtns);
+        } else
+        {
+            if (!shoppingCartBtns.isVisible()){
+                this.getChildren().add(shoppingCartBtns);
+            }
+        }
     }
 
     @FXML

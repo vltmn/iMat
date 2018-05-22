@@ -24,6 +24,8 @@ public class OrderHistory extends HBox {
     private List<Order> orders;
     private List<PrevOrder> prevOrders = new ArrayList<PrevOrder>();
 
+    private ShoppingCartModal cartModal = new ShoppingCartModal();
+
     @FXML private HBox parentHBox;
     @FXML private VBox historyVBox;
     @FXML private VBox productVBox;
@@ -42,7 +44,10 @@ public class OrderHistory extends HBox {
 
         this.orders = orders;
         populateHistoryList();
-        parentHBox.getChildren().add(new ShoppingCartModal());
+
+        cartModal.setButtonVisibility(false);
+        cartModal.setMinWidth(350);
+        parentHBox.getChildren().add(cartModal);
     }
 
     public OrderHistory(EventHandler closeEvent) {
