@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="CENTER_LEFT" onMouseClicked="#onClick" type="HBox" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="CENTER_LEFT" onMouseClicked="#onClick" styleClass="prev-order" stylesheets="@../../styles.css" type="HBox" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="orderDateLabel" text="2018-05-03">
          <font>

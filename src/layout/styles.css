@@ -373,3 +373,44 @@
     -fx-text-fill: -fx-text-dark;
     -fx-background-color: -fx-light-color;
 }
+
+.prev-order {
+    -fx-border-color: rgba(0,0,0,0.2);
+    -fx-border-width: 1px;
+}
+
+.prev-order .label {
+    -fx-font-size: 20px;
+    -fx-text-fill: derive(-fx-text-dark, 65%);
+}
+
+.prev-order.selected {
+    -fx-background-color: derive(-fx-main-color, 130%);
+}
+
+.prev-order.selected .label {
+    -fx-fill: -fx-text-dark;
+    -fx-text-fill: -fx-text-dark;
+}
+
+.prev-order:hover .label {
+    -fx-fill: -fx-text-dark;
+    -fx-text-fill: -fx-text-dark;
+}
+
+.prev-order:pressed {
+    -fx-background-color: rgba(0,0,0,0.1);
+}
+
+.history-product {
+    -fx-border-color: rgba(0,0,0,0.2);
+    -fx-border-width: 1px 1px 0px 1px;
+}
+
+.history-product .label{
+    -fx-font-size: 16px;
+}
+
+.history-product.last-child {
+    -fx-border-width: 1px 1px 1px 1px;
+}

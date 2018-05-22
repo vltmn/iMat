@@ -36,23 +36,12 @@ public class HistoryProduct extends GridPane {
         }
 
         productNameLabel.setText(item.getProduct().getName());
-        ammountLabel.setText(Double.toString(item.getAmount()) + " st");
+        ammountLabel.setText(Double.toString(item.getAmount()) + " " + item.getProduct().getUnit().substring(3));
         Image i = IMatDataHandler.getInstance().getFXImage(item.getProduct(), productImage.getFitWidth(), productImage.getFitHeight());
         productImage.setImage(i);
-        priceLabel.setText(Double.toString(item.getProduct().getPrice()) + " kr/st");
+        priceLabel.setText(Double.toString(item.getProduct().getPrice()) + " " + item.getProduct().getUnit());
     }
 
-    public HistoryProduct(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/OrderHistory/history_product.fxml"));
-        loader.setRoot(this);
-        loader.setController(this);
-
-        try {
-            loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @FXML
     private void addToCart(){

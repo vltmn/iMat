@@ -15,12 +15,14 @@ import se.chalmers.cse.dat216.project.Order;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderHistory extends HBox {
 
     private EventHandler<ActionEvent> closeHandler;
     private List<Order> orders;
+    private List<PrevOrder> prevOrders = new ArrayList<PrevOrder>();
 
     @FXML private HBox parentHBox;
     @FXML private VBox historyVBox;
@@ -41,7 +43,6 @@ public class OrderHistory extends HBox {
         this.orders = orders;
         populateHistoryList();
         parentHBox.getChildren().add(new ShoppingCartModal());
-        productVBox.setMinWidth(new HistoryProduct().getMinWidth());
     }
 
     public OrderHistory(EventHandler closeEvent) {
@@ -51,8 +52,13 @@ public class OrderHistory extends HBox {
 
     private void populateHistoryList(){
         for (Order ord : orders){
-            PrevOrder prevOrder = new PrevOrder(ord, event -> populateProductList(ord));
+            PrevOrder prevOrder = new PrevOrder(ord, event -> populateProductList(ord), event -> {
+                for (PrevOrder prevO : prevOrders) {
+                    prevO.setSelected(false);
+                }
+            });
             historyVBox.getChildren().add(prevOrder);
+            prevOrders.add(prevOrder);
         }
     }
 
@@ -60,6 +66,9 @@ public class OrderHistory extends HBox {
         productVBox.getChildren().clear();
         for (ShoppingItem item : order.getItems()){
             productVBox.getChildren().add(new HistoryProduct(item));
+        }
+        if (productVBox.getChildren().size() > 0) {
+            productVBox.getChildren().get(productVBox.getChildren().size() - 1).getStyleClass().add("last-child");
         }
     }
 
