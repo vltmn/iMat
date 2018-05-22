@@ -85,6 +85,7 @@ public class MainShop extends VBox {
         AnchorPane.setRightAnchor(shoppingCartModal, 0.0);
         shoppingCartModal.prefWidthProperty().bind(shoppingCartBtn.widthProperty());
         shoppingCartModal.setVisible(false);
+        shoppingCartModal.getStyleClass().add("shadow");
         mainContainer.getChildren().add(shoppingCartModal);
 
         //add the filter callbacks

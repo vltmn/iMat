@@ -106,6 +106,26 @@
 .order-process .close:pressed {
     -fx-fill: derive(-fx-warning-color, -40%);
 }
+
+.order-history {
+    -fx-background-radius: 5px;
+    -fx-padding: 8px;
+}
+.order-history .btn {
+    -fx-font-size: 18px;
+}
+
+.order-history .close {
+    -fx-fill: -fx-warning-color;
+}
+.order-history .close:hover {
+    -fx-fill: derive(-fx-warning-color, -20%);
+}
+
+.order-history .close:pressed {
+    -fx-fill: derive(-fx-warning-color, -40%);
+}
+
 .cart-btn .btn {
     -fx-font-size: 16px;
 }
@@ -286,7 +306,7 @@
 
 
 .light-box {
-    -fx-background-color: rgba(0,0,0,0.6);
+    -fx-background-color: rgba(0,0,0,0.5);
 }
 
 .shadow {

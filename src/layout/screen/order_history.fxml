@@ -1,20 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="HBox" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1">
+
+<fx:root alignment="CENTER" fillHeight="false" styleClass="modal-wrapper" stylesheets="@../styles.css" type="HBox" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ScrollPane hbarPolicy="NEVER" prefHeight="400.0" prefWidth="100.0">
-         <content>
-            <FlowPane fx:id="historyFlow" prefHeight="200.0" prefWidth="200.0" />
-         </content>
-      </ScrollPane>
-      <ScrollPane hbarPolicy="NEVER" prefHeight="400.0" prefWidth="300.0">
-         <content>
-            <FlowPane fx:id="productFlow" prefHeight="200.0" prefWidth="200.0" />
-         </content>
-      </ScrollPane>
+      <VBox>
+         <children>
+            <AnchorPane prefHeight="0.0">
+               <children>
+                  <FontIcon iconLiteral="fa-times" iconSize="24" layoutX="513.0" layoutY="23.0" onMouseClicked="#onCloseBtnClicked" styleClass="close" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </AnchorPane>
+            <HBox fx:id="parentHBox">
+               <children>
+                  <ScrollPane hbarPolicy="NEVER" hmax="0.0">
+                     <content>
+                        <VBox fx:id="historyVBox" />
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane hbarPolicy="NEVER" minWidth="500.0">
+                     <content>
+                        <VBox fx:id="productVBox" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+         </children>
+         <styleClass>
+            <String fx:value="order-history" />
+            <String fx:value="bg" />
+         </styleClass>
+      </VBox>
    </children>
 </fx:root>

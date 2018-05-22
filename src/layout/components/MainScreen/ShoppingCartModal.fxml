@@ -36,6 +36,5 @@
    <styleClass>
       <String fx:value="shoppingcart-popover" />
       <String fx:value="bg" />
-      <String fx:value="shadow" />
    </styleClass>
 </fx:root>

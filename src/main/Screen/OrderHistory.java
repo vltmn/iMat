@@ -1,9 +1,12 @@
 package main.Screen;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import main.components.MainScreen.ShoppingCartModal;
 import main.components.OrderHistory.HistoryProduct;
 import main.components.OrderHistory.PrevOrder;
@@ -14,12 +17,14 @@ import se.chalmers.cse.dat216.project.ShoppingItem;
 import java.io.IOException;
 import java.util.List;
 
-public class OrderHistory extends HBox{
+public class OrderHistory extends HBox {
 
+    private EventHandler<ActionEvent> closeHandler;
     private List<Order> orders;
 
-    @FXML private FlowPane historyFlow;
-    @FXML private FlowPane productFlow;
+    @FXML private HBox parentHBox;
+    @FXML private VBox historyVBox;
+    @FXML private VBox productVBox;
 
 
     public OrderHistory(List<Order> orders){
@@ -35,25 +40,32 @@ public class OrderHistory extends HBox{
 
         this.orders = orders;
         populateHistoryList();
-        this.getChildren().add(new ShoppingCartModal());
+        parentHBox.getChildren().add(new ShoppingCartModal());
+        productVBox.setMinWidth(new HistoryProduct().getMinWidth());
     }
 
-    public OrderHistory() {
+    public OrderHistory(EventHandler closeEvent) {
         this(IMatDataHandler.getInstance().getOrders());
+        this.closeHandler = closeEvent;
     }
 
     private void populateHistoryList(){
         for (Order ord : orders){
             PrevOrder prevOrder = new PrevOrder(ord, event -> populateProductList(ord));
-            historyFlow.getChildren().add(prevOrder);
+            historyVBox.getChildren().add(prevOrder);
         }
     }
 
     private void populateProductList(Order order){
-        productFlow.getChildren().clear();
+        productVBox.getChildren().clear();
         for (ShoppingItem item : order.getItems()){
-            productFlow.getChildren().add(new HistoryProduct(item));
+            productVBox.getChildren().add(new HistoryProduct(item));
         }
+    }
+
+    @FXML
+    private void onCloseBtnClicked() {
+        closeHandler.handle(null);
     }
 
 }
