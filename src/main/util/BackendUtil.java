@@ -9,6 +9,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.util.Duration;
+import main.components.SnackBar;
+import main.util.snackbar.SnackBarHandler;
 import se.chalmers.cse.dat216.project.*;
 
 import java.text.DecimalFormat;
@@ -93,7 +95,7 @@ public class BackendUtil {
     }
 
     public void addToUndoList(Product p, Consumer<Product> onRemovedFromUndo) {
-        PauseTransition pt = new PauseTransition(Duration.seconds(1.5));
+        PauseTransition pt = new PauseTransition(Duration.seconds(3));
         undoTimers.put(p, pt);
         Optional<ShoppingItem> sci = IMatDataHandler.getInstance().getShoppingCart().getItems().stream()
                 .filter(si -> si.getProduct().equals(p))
@@ -107,6 +109,17 @@ public class BackendUtil {
             undoTimers.remove(p);
         });
         pt.playFromStart();
+    }
+
+    public void removedUndoHandler(Product p) {
+        Optional<ShoppingItem> oSi = IMatDataHandler.getInstance().getShoppingCart().getItems().stream().filter(sci -> sci.getProduct().getProductId() == p.getProductId())
+                .findAny();
+        if(!oSi.isPresent()) return;
+        ShoppingItem si = oSi.get();
+        IMatDataHandler.getInstance().getShoppingCart().removeItem(si);
+        SnackBarHandler.getInstance().showProductUndoSnackbar(si, event -> {
+            setProductAmount(si.getProduct(), si.getAmount());
+        });
     }
 
     public void stopRemoval(Product p) {

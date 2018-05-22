@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-
-<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Screen.RootController" />
+<StackPane fx:id="wrappingPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Screen.RootController">
+   <children>
+      <StackPane fx:id="rootPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../styles.css" />
+      <HBox fx:id="snackBarPane" alignment="TOP_CENTER" maxHeight="-Infinity" prefHeight="58.0" prefWidth="350.0" translateY="100.0" StackPane.alignment="BOTTOM_CENTER" />
+   </children>
+</StackPane>

@@ -1,10 +1,13 @@
 package main.Screen;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
+import main.util.snackbar.SnackBarHandler;
+import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,9 +26,12 @@ public class RootController implements Initializable {
     private OrderHistory orderHistory;
     private Thanks thanksPane;
 
+    @FXML
+    private Pane snackBarPane;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        SnackBarHandler.getInstance().initialize(snackBarPane);
         mainPane = new MainShop(event -> orderProcess.toFront(), event ->  profilePane.toFront(), event -> orderHistory.toFront());
         welcomePane = new Welcome(event -> mainPane.toFront());
         profilePane = new Profile(event -> mainPane.toFront());

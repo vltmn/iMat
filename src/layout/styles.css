@@ -7,7 +7,9 @@
     -fx-base: white;
     -fx-text-dark: -fx-dark-color;
     -fx-text-fill: -fx-text-dark;
+    -fx-snackbar-color: rgba(0,0,0,0.87);
 
+    -fx-snackbar-btn-color: rgba(246, 82, 57, 0.91);
 }
 .split-pane *.split-pane-divider {
     -fx-padding: 0 1 0 1;
@@ -369,6 +371,32 @@
     -fx-background-color: -fx-light-color;
 }
 
+.snackbar {
+    -fx-background-color: -fx-snackbar-color;
+    -fx-pref-height: 48px;
+    -fx-pref-width: 344px;
+    -fx-background-radius: 4px;
+}
+
+.snackbar .label {
+    -fx-font-size: 16px;
+    -fx-text-fill: -fx-light-color;
+}
+
+.snackbar .button {
+    -fx-border-width: 0px;
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-snackbar-btn-color;
+    -fx-font-size: 16px;
+}
+
+.snackbar .button:hover {
+    -fx-background-color: rgba(246, 82, 57, 0.18);
+}
+
+.snackbar .button:pressed {
+    -fx-background-color: rgba(246, 82, 57, 0.30);
+}
 .prev-order {
     -fx-border-color: rgba(0,0,0,0.2);
     -fx-border-width: 1px;

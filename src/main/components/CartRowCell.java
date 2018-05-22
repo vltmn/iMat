@@ -67,8 +67,10 @@ public class CartRowCell extends StackPane {
     }
     private boolean undoFn() {
         if(BackendUtil.getInstance().getProductCartAmount(product) == 0) return true;
-        undoPane.toFront();
-        BackendUtil.getInstance().addToUndoList(product, p -> undoPane.toBack());
+//        undoPane.toFront();
+//        BackendUtil.getInstance().addToUndoList(product, p -> undoPane.toBack());
+
+        BackendUtil.getInstance().removedUndoHandler(product);
         return false;
     }
 
