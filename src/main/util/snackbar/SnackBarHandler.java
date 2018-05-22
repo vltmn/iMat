@@ -11,6 +11,7 @@ import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.util.ArrayDeque;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -59,29 +60,33 @@ public class SnackBarHandler {
                 showHideTransition.setOnFinished(event2 -> {
                 });
                 snackBarPane.getChildren().clear();
+                nextQueueItem();
             });
         };
         snackBarShowPause.setOnFinished(event -> {
             showHideTransition.setOnFinished(event1 -> {
                 showHideTransition.setOnFinished(event2 -> {});
                 snackBarPane.getChildren().clear();
-
-                if(snackBarQueue.isEmpty()) return;
-                SnackBarWrapper toShow = snackBarQueue.poll();
-                if(toShow == null) return;
-                snackBarShowPause.setDuration(Duration.millis(toShow.getMillisToShow()));
-                snackBarPane.getChildren().add(toShow.getSnackBar());
-                showHideTransition.setOnFinished(event2 -> {
-                    snackBarShowPause.playFromStart();
-                    showHideTransition.setOnFinished(event3 -> {});
-                });
-                animatePaneUp();
+                nextQueueItem();
 
             });
             animatePaneDown();
 
 
         });
+    }
+
+    private void nextQueueItem() {
+        if(snackBarQueue.isEmpty()) return;
+        SnackBarWrapper poll = snackBarQueue.poll();
+        if(poll == null) return;
+        snackBarShowPause.setDuration(Duration.millis(poll.getMillisToShow()));
+        snackBarPane.getChildren().add(poll.getSnackBar());
+        showHideTransition.setOnFinished(event -> {
+            snackBarShowPause.playFromStart();
+            showHideTransition.setOnFinished(event1 -> {});
+        });
+        animatePaneUp();
     }
 
     public void showSnackBar(String text, EventHandler<ActionEvent> onBtnClick) {
@@ -109,5 +114,15 @@ public class SnackBarHandler {
         }, BAR_CLICK_HANDLER);
         handleSnackBar(bar);
 
+    }
+
+    public void showCartClearSnackBar(List<ShoppingItem> itemsCleared, EventHandler<ActionEvent> onBtnClick) {
+        int size = itemsCleared.size();
+        String snackBarLabel = String.format("%d varor togs bort. ", size);
+        SnackBarWrapper bar = new SimpleSnackBar(snackBarLabel, event -> {
+            onBtnClick.handle(event);
+            BAR_CLICK_HANDLER.handle(event);
+        }, BAR_CLICK_HANDLER);
+        handleSnackBar(bar);
     }
 }

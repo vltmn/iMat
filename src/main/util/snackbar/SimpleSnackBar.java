@@ -7,6 +7,6 @@ import main.components.SnackBar;
 public class SimpleSnackBar extends SnackBarBase {
     protected SimpleSnackBar(String text, EventHandler<ActionEvent> onBtnClickHandler, EventHandler<ActionEvent> onBarClickedHandler) {
         super(
-                new SnackBar(text, onBtnClickHandler, onBarClickedHandler), 4000);
+                new SnackBar(text, onBtnClickHandler, onBarClickedHandler));
     }
 }

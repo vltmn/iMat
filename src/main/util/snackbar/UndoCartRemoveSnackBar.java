@@ -14,8 +14,7 @@ public class UndoCartRemoveSnackBar extends SnackBarBase{
                 new SnackBar(
                         String.format(labelFormat, MiscUtil.getInstance().formatAsAmount(i.getAmount()), i.getProduct().getUnitSuffix(), i.getProduct().getName()),
                         onBtnClickHandler,
-                        onBarClickedHandler),
-                6000);
+                        onBarClickedHandler));
     }
 
 }

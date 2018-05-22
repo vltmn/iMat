@@ -10,7 +10,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.components.CartRowCell;
+import main.util.snackbar.SnackBarHandler;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
+import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,6 +59,7 @@ public class ShoppingCartModal extends VBox {
         this(showChartEvent);
         cartScrollPane.maxHeightProperty().bind(ne);
     }
+
     private void updateList() {
 
         cartList.getChildren().clear();
@@ -77,25 +80,25 @@ public class ShoppingCartModal extends VBox {
     }
 
     public void setButtonVisibility(boolean visible) {
-        if (!visible){
-            shoppingCartBtns.setVisible(visible);
+        if (visible && !this.getChildren().contains(shoppingCartBtns)) {
+            this.getChildren().add(shoppingCartBtns);
+        } else if (!visible) {
             this.getChildren().remove(shoppingCartBtns);
-        } else
-        {
-            if (!shoppingCartBtns.isVisible()){
-                this.getChildren().add(shoppingCartBtns);
-            }
         }
     }
 
     @FXML
     private void onGoToChartClicked() {
-        if(showChartEvent == null) return;
+        if (showChartEvent == null) return;
         showChartEvent.handle(null);
     }
 
     @FXML
-    private void onClearCartClicked(){
-        IMatDataHandler.getInstance().getShoppingCart().clear();
+    private void onClearCartClicked() {
+        List<ShoppingItem> items = new ArrayList<>(IMatDataHandler.getInstance().getShoppingCart().getItems());
+        items.forEach(si -> IMatDataHandler.getInstance().getShoppingCart().removeItem(si));
+        SnackBarHandler.getInstance().showCartClearSnackBar(items, event -> {
+            items.forEach(i -> IMatDataHandler.getInstance().getShoppingCart().addItem(i));
+        });
     }
 }
