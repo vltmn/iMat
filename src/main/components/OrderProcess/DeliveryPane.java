@@ -9,12 +9,17 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import main.util.Model.FieldValidation.*;
 import se.chalmers.cse.dat216.project.Customer;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class DeliveryPane extends VBox {
+    private final static String BAD_INPUT = "error";
     @FXML
     private Label nameLabel;
     @FXML
@@ -54,6 +59,7 @@ public class DeliveryPane extends VBox {
 
     private Customer cust;
 
+    private List<ValidationField<String>> stringFields = new ArrayList<>();
 
     private final static String PREFILLED = "PREFILLED";
 
@@ -75,7 +81,13 @@ public class DeliveryPane extends VBox {
     }
 
     private void populateInputs() {
-
+        stringFields.add(new NonEmptyField(firstNameField));
+        stringFields.add(new NonEmptyField(lastNameField));
+        stringFields.add(new EmailField(emailField));
+        stringFields.add(new NonEmptyField(addressField));
+        stringFields.add(new PostCodeField(postNumField));
+        stringFields.add(new NonEmptyField(stateField));
+        stringFields.add(new PhoneField(phoneField));
     }
 
     private void setActions() {
@@ -86,10 +98,10 @@ public class DeliveryPane extends VBox {
         inputBtn.setToggleGroup(btnGroup);
 
         btnGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            if(PREFILLED.equals(newValue.getUserData())) {
+            if (PREFILLED.equals(newValue.getUserData())) {
                 prefilledGrid.disableProperty().setValue(false);
                 inputGrid.disableProperty().setValue(true);
-            }else if(MANUAL.equals(newValue.getUserData())) {
+            } else if (MANUAL.equals(newValue.getUserData())) {
                 prefilledGrid.disableProperty().setValue(true);
                 inputGrid.disableProperty().setValue(false);
             }
@@ -98,7 +110,7 @@ public class DeliveryPane extends VBox {
 
     private void initData() {
         cust = IMatDataHandler.getInstance().getCustomer();
-        if(!IMatDataHandler.getInstance().isCustomerComplete()) {
+        if (!IMatDataHandler.getInstance().isCustomerComplete()) {
             //cust is not complete, select empty text input
             savedPane.disableProperty().setValue(true);
             inputBtn.setSelected(true);
@@ -116,11 +128,11 @@ public class DeliveryPane extends VBox {
     }
 
     public boolean complete() {
-        if(btnGroup.selectedToggleProperty().getValue().getUserData().equals(MANUAL)) {
-            if(!updateCustomerWithManualData()) {
+        if (btnGroup.selectedToggleProperty().getValue().getUserData().equals(MANUAL)) {
+            if (!updateCustomerWithManualData()) {
                 return false;
             }
-        }else if(!btnGroup.selectedToggleProperty().getValue().getUserData().equals(PREFILLED)) {
+        } else if (!btnGroup.selectedToggleProperty().getValue().getUserData().equals(PREFILLED)) {
             //bad btn
             return false;
         }
@@ -131,37 +143,20 @@ public class DeliveryPane extends VBox {
     }
 
     private boolean updateCustomerWithManualData() {
-        String firstName = firstNameField.textProperty().get();
-        String lastName = lastNameField.textProperty().get();
-        String email = emailField.textProperty().get();
-        String postNum = postNumField.textProperty().get();
-        String address = addressField.textProperty().get();
-        String state = stateField.textProperty().get();
-        String phone = phoneField.textProperty().get();
-        if(firstName.equals("") ||
-                lastName.equals("") ||
-                email.equals("") ||
-                postNum.equals("") ||
-                address.equals("") ||
-                state.equals("") ||
-                phone.equals("")) {
-            badInputHandler();
-            return false;
+        stringFields.forEach(sf -> sf.getTextField().getStyleClass().removeIf(s -> s.equalsIgnoreCase(BAD_INPUT)));
+        List<ValidationField<String>> badFields = stringFields.stream().filter(sf -> !sf.validate()).collect(Collectors.toList());
 
-        }
-        cust.setAddress(address);
-        cust.setFirstName(firstName);
-        cust.setLastName(lastName);
-        cust.setEmail(email);
-        cust.setPostAddress(state);
-        cust.setPostCode(postNum);
-        cust.setPhoneNumber(phone);
-        cust.setMobilePhoneNumber(phone);
+        badFields.forEach(sf -> sf.getTextField().getStyleClass().add(BAD_INPUT));
+        if(!badFields.isEmpty()) return false;
+
+        cust.setAddress(addressField.getText());
+        cust.setFirstName(firstNameField.getText());
+        cust.setLastName(lastNameField.getText());
+        cust.setEmail(emailField.getText());
+        cust.setPostAddress(stateField.getText());
+        cust.setPostCode(postNumField.getText());
+        cust.setPhoneNumber(phoneField.getText());
         return true;
-    }
-
-    private void badInputHandler() {
-        //TODO handle bad customer
     }
 
 }

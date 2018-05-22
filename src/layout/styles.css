@@ -362,3 +362,14 @@
     -fx-padding: 60px 0 0 0;
     -fx-font-size: 16px;
 }
+
+.text-field.error {
+    -fx-border-color: -fx-accent-color;
+    -fx-border-radius: 4px;
+    -fx-effect: none;
+}
+
+.tooltip {
+    -fx-text-fill: -fx-text-dark;
+    -fx-background-color: -fx-light-color;
+}

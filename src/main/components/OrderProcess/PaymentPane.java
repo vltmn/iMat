@@ -10,12 +10,21 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.util.BackendUtil;
+import main.util.Model.FieldValidation.CardNumberField;
+import main.util.Model.FieldValidation.NonEmptyField;
+import main.util.Model.FieldValidation.NumberField;
+import main.util.Model.FieldValidation.ValidationField;
 import se.chalmers.cse.dat216.project.CreditCard;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 import java.io.IOException;
-//TODO add card type
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class PaymentPane extends VBox {
+
+    private final static String BAD_INPUT = "error";
     @FXML
     private RadioButton prefilledBtn;
     @FXML
@@ -51,6 +60,8 @@ public class PaymentPane extends VBox {
     private final static String PREFILLED = "PREFILLED";
 
     private final static String MANUAL = "MANUAL";
+    private List<ValidationField<String>> stringFields = new ArrayList<>();
+    private List<ValidationField<Number>> numFields = new ArrayList<>();
 
     public PaymentPane() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/OrderProcess/paymentPane.fxml"));
@@ -62,8 +73,17 @@ public class PaymentPane extends VBox {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        populateInputs();
         setActions();
         initData();
+    }
+
+    private void populateInputs() {
+        stringFields.add(new NonEmptyField(cardHolderField));
+        stringFields.add(new CardNumberField(cardNoField));
+        numFields.add(new NumberField(verCodeField, 3));
+        numFields.add(new NumberField(validMonthField, 2));
+        numFields.add(new NumberField(validYearField, 2));
     }
 
     private void setActions() {
@@ -115,32 +135,25 @@ public class PaymentPane extends VBox {
     }
 
     private boolean updateCreditCardWithManualData() {
-        String cardHolderName = cardHolderField.textProperty().get();
-        String cardNo = cardNoField.textProperty().get();
+        stringFields.forEach(sf -> sf.getTextField().getStyleClass()
+                .removeIf(s -> s.equalsIgnoreCase(BAD_INPUT)));
+        numFields.forEach(nf -> nf.getTextField().getStyleClass()
+                .removeIf(s -> s.equalsIgnoreCase(BAD_INPUT)));
 
-        try {
-            int validMonth = Integer.parseInt(validMonthField.textProperty().get());
-            int validYear = Integer.parseInt(validYearField.textProperty().get());
-            int verCode = Integer.parseInt(verCodeField.textProperty().get());
-            if(cardHolderName.equals("") ||
-                    cardNo.equals("")) {
-                badInputHandler();
-                return false;
-            }
-            card.setValidMonth(validMonth);
-            card.setValidYear(validYear);
-            card.setVerificationCode(verCode);
-        } catch (NumberFormatException ex) {
-            badInputHandler();
-            return false;
-        }
+        List<ValidationField> badFields = new ArrayList<>();
+        badFields.addAll(stringFields.stream()
+                .filter(sf -> !sf.validate()).collect(Collectors.toList()));
+        badFields.addAll(numFields.stream()
+                .filter(nf -> !nf.validate()).collect(Collectors.toList()));
+        badFields.forEach(f -> f.getTextField().getStyleClass().add(BAD_INPUT));
+        if(!badFields.isEmpty()) return false;
 
-        card.setHoldersName(cardHolderName);
-        card.setCardNumber(cardNo);
+        card.setHoldersName(cardHolderField.getText());
+        card.setCardNumber(cardNoField.getText());
+        card.setValidMonth(Integer.parseInt(validMonthField.getText()));
+        card.setValidYear(Integer.parseInt(validYearField.getText()));
+        card.setVerificationCode(Integer.parseInt(verCodeField.getText()));
+
         return true;
-    }
-
-    private void badInputHandler() {
-        //TODO handle bad input
     }
 }
