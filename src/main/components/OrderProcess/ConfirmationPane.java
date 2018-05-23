@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import main.components.MainScreen.ShoppingCartModal;
 import main.util.BackendUtil;
+import main.util.MiscUtil;
 import se.chalmers.cse.dat216.project.CreditCard;
 import se.chalmers.cse.dat216.project.Customer;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
@@ -29,6 +30,8 @@ public class ConfirmationPane extends VBox {
     private Label cardNumberLabel;
     @FXML
     private Label validityLabel;
+
+    @FXML Label totalPriceLabel;
 
     @FXML
     private VBox orderBox;
@@ -58,6 +61,9 @@ public class ConfirmationPane extends VBox {
         cardHolderLabel.setText(card.getHoldersName());
         cardNumberLabel.setText(card.getCardNumber());
         validityLabel.setText(String.valueOf(BackendUtil.getInstance().getCreditCardValidity(card)));
+        totalPriceLabel.setText(String.format(
+                "Total: %s SEK", MiscUtil.getInstance().formatAsCurrency(IMatDataHandler.getInstance().getShoppingCart().getTotal())
+        ));
         this.toFront();
     }
 

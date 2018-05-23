@@ -441,3 +441,7 @@
 .welcome .label{
     -fx-text-fill: -fx-main-color;
 }
+
+.total-price {
+    -fx-font-size: 26px;
+}
