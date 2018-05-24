@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import main.components.CartRowCell;
 import main.util.snackbar.SnackBarHandler;
@@ -27,6 +28,9 @@ public class ShoppingCartModal extends VBox {
 
     @FXML
     private ScrollPane cartScrollPane;
+
+    @FXML
+    private Pane realContainer;
 
     @FXML
     private HBox shoppingCartBtns;
@@ -80,10 +84,10 @@ public class ShoppingCartModal extends VBox {
     }
 
     public void setButtonVisibility(boolean visible) {
-        if (visible && !this.getChildren().contains(shoppingCartBtns)) {
-            this.getChildren().add(shoppingCartBtns);
+        if (visible && !realContainer.getChildren().contains(shoppingCartBtns)) {
+            realContainer.getChildren().add(shoppingCartBtns);
         } else if (!visible) {
-            this.getChildren().remove(shoppingCartBtns);
+            realContainer.getChildren().remove(shoppingCartBtns);
         }
     }
 
