@@ -12,7 +12,7 @@
       <VBox fx:id="realContainer" stylesheets="@../../styles.css">
           <children>
               <!--<ListView fx:id="list"/>-->
-              <ScrollPane fx:id="cartScrollPane" fitToWidth="true">
+              <ScrollPane fx:id="cartScrollPane" fitToWidth="true" vbarPolicy="ALWAYS">
                   <content>
                       <VBox fx:id="cartList">
 
