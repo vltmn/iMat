@@ -115,6 +115,8 @@ public class OrderProcess extends VBox {
         sequenceMapWrapper.getChildren().clear();
         addScreens();
         initBtns();
+        //do this twice, will set the backbtn to correct label
+        backBtn.disableProperty().set(true);
     }
 
     private void addScreens() {
