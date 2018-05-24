@@ -10,6 +10,11 @@
           <FontIcon iconLiteral="fa-shopping-cart" iconSize="24" styleClass="font-icon" wrappingWidth="24.0" />
 
         <Label text="Varukorg" />
+      <HBox alignment="CENTER" maxHeight="30.0" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 20px;" styleClass="bg">
+         <children>
+            <Label fx:id="cartCount" alignment="CENTER" style="-fx-text-fill: -fx-main-color;" text="20" />
+         </children>
+      </HBox>
         <Label fx:id="cartValueLabel" alignment="CENTER_RIGHT" maxWidth="Infinity" text="152.0" HBox.hgrow="ALWAYS" />
 
 

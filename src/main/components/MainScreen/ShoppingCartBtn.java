@@ -20,7 +20,12 @@ public class ShoppingCartBtn extends HBox {
     @FXML
     private Label cartValueLabel;
 
+    @FXML
+    private Label cartCount;
+
     private double oldTotal = 0;
+
+    private Color baseColor = null;
 
     public ShoppingCartBtn() {
 
@@ -34,8 +39,12 @@ public class ShoppingCartBtn extends HBox {
             throw new RuntimeException(e);
         }
         ShoppingCart shoppingCart = IMatDataHandler.getInstance().getShoppingCart();
-        shoppingCart.addShoppingCartListener((event) -> cartValueLabel.setText(MiscUtil.getInstance().formatAsCurrency(shoppingCart.getTotal())));
+        shoppingCart.addShoppingCartListener((event) -> {
+            cartValueLabel.setText(MiscUtil.getInstance().formatAsCurrency(shoppingCart.getTotal()));
+            cartCount.setText(String.valueOf(IMatDataHandler.getInstance().getShoppingCart().getItems().size()));
+        });
         cartValueLabel.setText(MiscUtil.getInstance().formatAsCurrency(shoppingCart.getTotal()));
+        cartCount.setText(String.valueOf(IMatDataHandler.getInstance().getShoppingCart().getItems().size()));
         oldTotal = IMatDataHandler.getInstance().getShoppingCart().getTotal();
         IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(event -> {
             double newTotal = IMatDataHandler.getInstance().getShoppingCart().getTotal();
@@ -44,12 +53,15 @@ public class ShoppingCartBtn extends HBox {
             }
             oldTotal = newTotal;
         });
+
     }
 
     public void animateAdd() {
+        if(baseColor == null) {
+            baseColor = Color.valueOf(getBackground().getFills().get(0).getFill().toString());
+        }
         Duration duration = Duration.millis(800);
-        Color oldColor = Color.valueOf(getBackground().getFills().get(0).getFill().toString());
-        Color newColor = oldColor.brighter();
+        Color newColor = baseColor.brighter();
         BackgroundFill bgf = getBackground().getFills().get(0);
 
         Background bg = getBackground();
@@ -60,7 +72,7 @@ public class ShoppingCartBtn extends HBox {
             }
             @Override
             protected void interpolate(double frac) {
-                Color toUse = newColor.interpolate(oldColor,
+                Color toUse = newColor.interpolate(baseColor,
                         Math.abs(
                                 frac * 2 - 1
                         ));
@@ -71,22 +83,5 @@ public class ShoppingCartBtn extends HBox {
             }
         };
         anim.play();
-
-//        Background curBg = new Background(new BackgroundFill(oldColor,
-//                getBackground().getFills().get(0).getRadii(), Insets.EMPTY));
-//        Color newC  =oldColor.brighter().brighter();
-//        getBackground()
-//        Background blinkBg = new BackgroundFill(oldColor.brighter().brighter(),
-//                curBg.getFills().get(0).getRadii(), Insets.EMPTY);
-//        Duration duration = Duration.millis(500);
-//        Timeline tl = new Timeline(
-//                new KeyFrame(Duration.ZERO,
-//                        new KeyValue(backgroundProperty(), curBg)),
-//                new KeyFrame(duration,
-//                        new KeyValue(backgroundProperty(), blinkBg, Interpolator.EASE_BOTH)),
-//                new KeyFrame(duration.multiply(2),
-//                        new KeyValue(backgroundProperty(), curBg, Interpolator.EASE_BOTH))
-//        );
-//        tl.playFromStart();
     }
 }
