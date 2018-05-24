@@ -47,7 +47,7 @@
                <children>
                   <FontIcon iconLiteral="fa-trash" iconSize="24" onMouseClicked="#onRemoveClick" styleClass="remove" />
                   <Pane VBox.vgrow="ALWAYS" />
-                  <Label fx:id="totalLabel" text="100:0" />
+                  <Label fx:id="totalLabel" alignment="CENTER_RIGHT" minWidth="50.0" text="100:00" />
                </children>
                <HBox.margin>
                   <Insets />

@@ -8,33 +8,48 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<fx:root stylesheets="@../../styles.css" type="VBox" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <!--<ListView fx:id="list"/>-->
-        <ScrollPane fx:id="cartScrollPane" fitToWidth="true">
-            <content>
-                <VBox fx:id="cartList">
+<fx:root type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox stylesheets="@../../styles.css">
+          <children>
+              <!--<ListView fx:id="list"/>-->
+              <ScrollPane fx:id="cartScrollPane" fitToWidth="true">
+                  <content>
+                      <VBox fx:id="cartList">
 
                 </VBox>
-            </content>
-        </ScrollPane>
-      <HBox fx:id="shoppingCartBtns" spacing="10.0" styleClass="cart-btn">
-         <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onGoToChartClicked" styleClass="btn" text="Gå till kassan" HBox.hgrow="ALWAYS" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClearCartClicked" text="Rensa varukorg" HBox.hgrow="ALWAYS">
-               <styleClass>
-                  <String fx:value="btn" />
-                  <String fx:value="btn-warning" />
-               </styleClass>
-            </Button>
-         </children>
-         <padding>
-            <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-         </padding>
-      </HBox>
-    </children>
-   <styleClass>
-      <String fx:value="shoppingcart-popover" />
-      <String fx:value="bg" />
-   </styleClass>
+                  </content>
+              </ScrollPane>
+            <HBox fx:id="shoppingCartBtns" spacing="10.0" styleClass="cart-btn">
+               <children>
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onGoToChartClicked" text="Gå till kassan" HBox.hgrow="ALWAYS">
+                     <styleClass>
+                        <String fx:value="btn" />
+                        <String fx:value="btn-default" />
+                     </styleClass>
+                  </Button>
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClearCartClicked" text="Rensa varukorg" HBox.hgrow="ALWAYS">
+                     <styleClass>
+                        <String fx:value="btn" />
+                        <String fx:value="btn-warning-outline" />
+                     </styleClass>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+               </padding>
+            </HBox>
+          </children>
+         <styleClass>
+            <String fx:value="shoppingcart-popover" />
+            <String fx:value="bg" />
+         </styleClass>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="8.0" />
+   </padding>
 </fx:root>

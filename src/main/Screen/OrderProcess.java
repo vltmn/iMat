@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import main.components.OrderProcess.DeliveryPane;
 import main.components.OrderProcess.PaymentPane;
-import main.components.OrderProcess.ConfirmationPane;
+import main.components.OrderProcess.VerificationPane;
 import main.components.OrderProcess.SequenceMap;
 
 import java.io.IOException;
@@ -32,7 +32,7 @@ public class OrderProcess extends VBox {
     private Pane sequenceMapWrapper;
     @FXML
     private Button forwardBtn;
-    private ConfirmationPane confirmationPane;
+    private VerificationPane verificationPane;
     private EventHandler<ActionEvent> doneHandler;
     private EventHandler<ActionEvent> closeHandler;
     private SequenceMap sequenceMap;
@@ -96,10 +96,10 @@ public class OrderProcess extends VBox {
                 case 2:
                     complete = paymentPane.complete();
                     if(!complete) return;
-                    confirmationPane.show();
+                    verificationPane.show();
                     break;
                 case 3:
-                    confirmationPane.complete();
+                    verificationPane.complete();
                     doneHandler.handle(event);
                     resetView();
                     return;
@@ -124,9 +124,9 @@ public class OrderProcess extends VBox {
         sequenceMap.setStep(1);
         paymentPane = new PaymentPane();
         deliveryPane = new DeliveryPane();
-        confirmationPane = new ConfirmationPane();
+        verificationPane = new VerificationPane();
 //        orderStack.getChildren().addAll(paymentPane, deliveryPane);
-        orderStack.getChildren().addAll(confirmationPane, paymentPane, deliveryPane);
+        orderStack.getChildren().addAll(verificationPane, paymentPane, deliveryPane);
     }
 
     @FXML

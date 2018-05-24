@@ -16,7 +16,7 @@
             <String fx:value="btn" />
             <String fx:value="btn-warning" />
          </styleClass></Button>
-      <TextField fx:id="qtyField" alignment="CENTER_RIGHT" prefWidth="60.0" text="0.0" HBox.hgrow="SOMETIMES" />
+      <TextField fx:id="qtyField" alignment="CENTER_RIGHT" prefWidth="60.0" styleClass="text-field" text="0.0" HBox.hgrow="SOMETIMES" />
       <Button fx:id="addBtn" mnemonicParsing="false" HBox.hgrow="NEVER">
          <graphic>
             <FontIcon iconLiteral="fa-plus" iconSize="19" styleClass="font-icon" />

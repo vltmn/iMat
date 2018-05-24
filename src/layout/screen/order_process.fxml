@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,8 +16,11 @@
          <children>
             <AnchorPane>
                <children>
-                  <HBox fx:id="sequenceMapWrapper" alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <FontIcon iconLiteral="fa-times" iconSize="24" onMouseClicked="#onCloseBtnClicked" styleClass="close" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <HBox fx:id="sequenceMapWrapper" alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding></HBox>
+                  <FontIcon iconLiteral="fa-times" iconSize="24" onMouseClicked="#onCloseBtnClicked" styleClass="close" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
                </children>
             </AnchorPane>
             <StackPane fx:id="orderStack" VBox.vgrow="ALWAYS" />
@@ -25,9 +29,12 @@
                   <Pane HBox.hgrow="ALWAYS" />
                   <Button fx:id="backBtn" disable="true" mnemonicParsing="false" styleClass="btn" text="Tillbaka" />
                   <Pane HBox.hgrow="ALWAYS" />
-                  <Button fx:id="forwardBtn" mnemonicParsing="false" styleClass="btn" text="Gå vidare" />
+                  <Button fx:id="forwardBtn" mnemonicParsing="false" styleClass="btn, btn-default" text="Gå vidare" />
                   <Pane HBox.hgrow="ALWAYS" />
                </children>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
             </HBox>
          </children>
          <styleClass>

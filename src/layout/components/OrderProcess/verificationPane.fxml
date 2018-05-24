@@ -62,7 +62,13 @@
                      </children>
                   </VBox>
                   <Pane VBox.vgrow="SOMETIMES" />
-                  <Label fx:id="totalPriceLabel" styleClass="total-price" text="Total: 56:00 SEK" />
+                  <HBox prefWidth="400.0" styleClass="total-price">
+                     <children>
+                        <Label text="Total:" />
+                        <Pane HBox.hgrow="SOMETIMES" />
+                        <Label fx:id="totalPriceLabel" styleClass="total-price" text="56:00 SEK" />
+                     </children>
+                  </HBox>
                   <Pane VBox.vgrow="SOMETIMES" />
                     </children>
                 </VBox>

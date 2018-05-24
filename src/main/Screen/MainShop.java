@@ -86,6 +86,7 @@ public class MainShop extends VBox {
         shoppingCartModal.prefWidthProperty().bind(shoppingCartBtn.widthProperty());
         shoppingCartModal.setVisible(false);
         shoppingCartModal.getStyleClass().add("shadow");
+        shoppingCartModal.maxHeightProperty().bind(mainContainer.heightProperty());
         mainContainer.getChildren().add(shoppingCartModal);
 
         //add the filter callbacks

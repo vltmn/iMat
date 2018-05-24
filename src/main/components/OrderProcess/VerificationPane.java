@@ -13,7 +13,7 @@ import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 import java.io.IOException;
 
-public class ConfirmationPane extends VBox {
+public class VerificationPane extends VBox {
     @FXML
     private Label nameLabel;
     @FXML
@@ -36,7 +36,7 @@ public class ConfirmationPane extends VBox {
     @FXML
     private VBox orderBox;
 
-    public ConfirmationPane() {
+    public VerificationPane() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/OrderProcess/verificationPane.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -62,8 +62,13 @@ public class ConfirmationPane extends VBox {
         cardNumberLabel.setText(card.getCardNumber());
         validityLabel.setText(String.valueOf(BackendUtil.getInstance().getCreditCardValidity(card)));
         totalPriceLabel.setText(String.format(
-                "Total: %s SEK", MiscUtil.getInstance().formatAsCurrency(IMatDataHandler.getInstance().getShoppingCart().getTotal())
+                "%s SEK", MiscUtil.getInstance().formatAsCurrency(IMatDataHandler.getInstance().getShoppingCart().getTotal())
         ));
+        IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(cartEvent -> {
+            totalPriceLabel.setText(String.format(
+                    "%s SEK"
+            ,MiscUtil.getInstance().formatAsCurrency(IMatDataHandler.getInstance().getShoppingCart().getTotal())));
+        });
         this.toFront();
     }
 
