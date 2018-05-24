@@ -41,11 +41,23 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                            <Label fx:id="nameLabel" text="Name" GridPane.columnIndex="1" />
+                                    <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1">
+                                       <children>
+                                                  <Label fx:id="firstNameLabel" text="Name" />
+                                          <Label text=" " />
+                                          <Label fx:id="lastNameLabel" text="Label" />
+                                       </children>
+                                    </HBox>
                                             <Label fx:id="phoneLabel" text="Phone" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                             <Label fx:id="emailLabel" text="Email" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                             <Label fx:id="streetLabel" text="Street" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                            <Label fx:id="postNoLabel" text="Postal" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                       <children>
+                                                  <Label fx:id="postNoLabel" text="123" />
+                                          <Label text=" " />
+                                          <Label fx:id="stateLabel" text="state" />
+                                       </children>
+                                    </HBox>
                                     <Label text="Namn" />
                                     <Label text="Telefon" GridPane.rowIndex="1" />
                                     <Label text="E-post" GridPane.rowIndex="2" />

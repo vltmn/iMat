@@ -9,6 +9,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Pair;
 import main.util.BackendUtil;
 import main.util.Model.FieldValidation.CardNumberField;
 import main.util.Model.FieldValidation.NonEmptyField;
@@ -127,11 +128,23 @@ public class PaymentPane extends VBox {
             if(!updateCreditCardWithManualData()) {
                 return false;
             }
-        } else if(!btnGroup.selectedToggleProperty().getValue().getUserData().equals(PREFILLED)) {
+        } else if(btnGroup.selectedToggleProperty().getValue().getUserData().equals(PREFILLED)) {
+            updateBackendWithPrefilled();
+        } else {
+            //bad btn
             return false;
         }
         this.toBack();
         return true;
+    }
+
+    private void updateBackendWithPrefilled() {
+        card.setHoldersName(nameLabel.getText());
+        card.setCardNumber(cardNumberLabel.getText());
+        Pair<Integer, Integer> monthYearFromLabel = BackendUtil.getInstance().getMonthYearFromLabel(validThruLabel.getText());
+        card.setValidMonth(monthYearFromLabel.getKey());
+        card.setValidYear(monthYearFromLabel.getValue());
+        card.setVerificationCode(Integer.parseInt(verCodeLabel.getText()));
     }
 
     private boolean updateCreditCardWithManualData() {

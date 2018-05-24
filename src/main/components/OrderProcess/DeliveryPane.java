@@ -21,7 +21,9 @@ import java.util.stream.Collectors;
 public class DeliveryPane extends VBox {
     private final static String BAD_INPUT = "error";
     @FXML
-    private Label nameLabel;
+    private Label lastNameLabel;
+    @FXML
+    private Label firstNameLabel;
     @FXML
     private Label phoneLabel;
     @FXML
@@ -30,6 +32,8 @@ public class DeliveryPane extends VBox {
     private Label streetLabel;
     @FXML
     private Label postNoLabel;
+    @FXML
+    private Label stateLabel;
     @FXML
     private HBox savedPane;
     @FXML
@@ -114,15 +118,17 @@ public class DeliveryPane extends VBox {
             //cust is not complete, select empty text input
             savedPane.disableProperty().setValue(true);
             inputBtn.setSelected(true);
-            nameLabel.setText("Data saknas");
+            firstNameLabel.setText("Data saknas");
             return;
         }
         prefilledBtn.setSelected(true);
-        nameLabel.setText(cust.getFirstName() + " " + cust.getLastName());
+        firstNameLabel.setText(cust.getFirstName());
+        lastNameLabel.setText(cust.getLastName());
         phoneLabel.setText(cust.getPhoneNumber());
         emailLabel.setText(cust.getEmail());
         streetLabel.setText(cust.getAddress());
-        postNoLabel.setText(cust.getPostCode() + " " + cust.getPostAddress());
+        postNoLabel.setText(cust.getPostCode());
+        stateLabel.setText(cust.getPostAddress());
 
 
     }
@@ -132,7 +138,9 @@ public class DeliveryPane extends VBox {
             if (!updateCustomerWithManualData()) {
                 return false;
             }
-        } else if (!btnGroup.selectedToggleProperty().getValue().getUserData().equals(PREFILLED)) {
+        } else if (btnGroup.selectedToggleProperty().getValue().getUserData().equals(PREFILLED)) {
+            updateBackendWithPrefilled();
+        } else {
             //bad btn
             return false;
         }
@@ -140,6 +148,16 @@ public class DeliveryPane extends VBox {
         this.toBack();
         //TODO animate movement to left
         return true;
+    }
+
+    private void updateBackendWithPrefilled() {
+        cust.setFirstName(firstNameLabel.getText());
+        cust.setLastName(lastNameLabel.getText());
+        cust.setEmail(emailLabel.getText());
+        cust.setPostAddress(stateLabel.getText());
+        cust.setPhoneNumber(phoneLabel.getText());
+        cust.setAddress(streetLabel.getText());
+        cust.setPostCode(postNoLabel.getText());
     }
 
     private boolean updateCustomerWithManualData() {

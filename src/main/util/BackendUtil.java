@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
+import javafx.util.Pair;
 import main.components.SnackBar;
 import main.util.snackbar.SnackBarHandler;
 import se.chalmers.cse.dat216.project.*;
@@ -51,6 +52,14 @@ public class BackendUtil {
     public String getCreditCardValidity(CreditCard card) {
         NumberFormat nf = new DecimalFormat("00");
         return nf.format(card.getValidMonth()) + "/" + nf.format(card.getValidYear());
+    }
+
+    public Pair<Integer, Integer> getMonthYearFromLabel(String labelText) {
+        String[] split = labelText.split("/");
+        if(split.length != 2) throw new RuntimeException("Bad month and year from creditcard label");
+        int month = Integer.parseInt(split[0]);
+        int year = Integer.parseInt(split[1]);
+        return new Pair<>(month, year);
     }
     public ShoppingItem addProductAmountToCart(Product p) {
         return addProductAmountToCart(p, 1);
