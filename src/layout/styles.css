@@ -351,6 +351,11 @@
 
 .thanks-screen {
     -fx-background-radius: 5px;
+    -fx-padding: 8px;
+}
+
+.thanks-screen .label{
+    -fx-font-size: 40px;
 }
 
 .modal {

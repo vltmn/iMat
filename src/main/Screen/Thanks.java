@@ -1,9 +1,11 @@
 package main.Screen;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
+import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 import java.io.IOException;
 
@@ -24,7 +26,13 @@ public class Thanks extends VBox{
     }
 
     @FXML
-    private void onClick(){
+    private void onProceedClick(){
         eventHandler.handle(null);
+    }
+
+    @FXML
+    private void onTerminateClick(){
+        IMatDataHandler.getInstance().shutDown();
+        Platform.exit();
     }
 }
