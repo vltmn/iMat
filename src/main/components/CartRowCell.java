@@ -96,7 +96,17 @@ public class CartRowCell extends StackPane {
                         new KeyValue(this.prefHeightProperty(), 0, Interpolator.EASE_BOTH)
                 )
         );
-        timeline.setOnFinished(onFinished);
+        timeline.setOnFinished(event -> {
+            onFinished.handle(event);
+            if(toRemovedState) {
+                timeline.setOnFinished(event1 -> {});
+                timeline.setRate(-20);
+                timeline.play();
+            }
+
+
+            timeline.jumpTo(Duration.ZERO);
+        });
         if(!toRemovedState) {
             timeline.setRate( -1);
             timeline.jumpTo(timeline.getTotalDuration());
