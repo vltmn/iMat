@@ -123,10 +123,15 @@
                       <Button fx:id="cancelBtn" mnemonicParsing="false" text="Avbryt">
                      <styleClass>
                         <String fx:value="btn" />
-                        <String fx:value="btn-warning" />
+                        <String fx:value="btn-warning-outline" />
                      </styleClass>
                   </Button>
-                      <Button fx:id="saveBtn" mnemonicParsing="false" styleClass="btn" text="Spara" />
+                      <Button fx:id="saveBtn" mnemonicParsing="false" text="Spara" >
+                          <styleClass>
+                              <String fx:value="btn" />
+                              <String fx:value="btn-default" />
+                          </styleClass>
+                      </Button>
                   </children>
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
