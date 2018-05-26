@@ -83,7 +83,7 @@ public class MainShop extends VBox {
         topBarWrapper.getChildren().add(shoppingCartBtn);
 
         //add shopping cart modal
-        shoppingCartModal = new ShoppingCartModal(goToOrderProcess, mainContainer.heightProperty().subtract(40));
+        shoppingCartModal = new ShoppingCartModal(goToOrderProcess, mainContainer.heightProperty().subtract(40), true);
         AnchorPane.setTopAnchor(shoppingCartModal, -8.0);
         AnchorPane.setRightAnchor(shoppingCartModal, 0.0);
         shoppingCartModal.prefWidthProperty().bind(shoppingCartBtn.widthProperty());

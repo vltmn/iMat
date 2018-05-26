@@ -38,7 +38,7 @@ public class ShoppingCartModal extends VBox {
     private EventHandler<ActionEvent> showChartEvent;
     private List<CartRowCell> crcs = new ArrayList<>();
 
-    public ShoppingCartModal() {
+    public ShoppingCartModal(boolean hideOnEmptyCart) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/MainScreen/ShoppingCartModal.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -52,19 +52,23 @@ public class ShoppingCartModal extends VBox {
         updateList();
         IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(cartEvent -> {
             updateList();
-            if(IMatDataHandler.getInstance().getShoppingCart().getItems().size() < 1) this.setVisible(false);
+            if(IMatDataHandler.getInstance().getShoppingCart().getItems().size() < 1 && hideOnEmptyCart) this.setVisible(false);
         });
     }
 
-    private ShoppingCartModal(EventHandler<ActionEvent> showChartEvent) {
-        this();
+    private ShoppingCartModal(EventHandler<ActionEvent> showChartEvent, boolean hideOnEmptyCart) {
+        this(hideOnEmptyCart);
 
         this.showChartEvent = showChartEvent;
     }
 
-    public ShoppingCartModal(EventHandler<ActionEvent> showChartEvent, NumberExpression ne) {
-        this(showChartEvent);
+    public ShoppingCartModal(EventHandler<ActionEvent> showChartEvent, NumberExpression ne, boolean hideOnEmptyCart) {
+        this(showChartEvent, hideOnEmptyCart);
         cartScrollPane.maxHeightProperty().bind(ne);
+    }
+
+    public ShoppingCartModal() {
+        this(false);
     }
 
     private void updateList() {
