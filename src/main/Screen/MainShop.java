@@ -77,6 +77,9 @@ public class MainShop extends VBox {
         shoppingCartBtn = new ShoppingCartBtn();
         HBox.setHgrow(shoppingCartBtn, Priority.ALWAYS );
         shoppingCartBtn.setOnMouseClicked((mouseEvent) -> shoppingCartModal.setVisible(!shoppingCartModal.isVisible()));
+        IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(cartEvent -> {
+            shoppingCartBtn.disableProperty().set(IMatDataHandler.getInstance().getShoppingCart().getItems().size() < 1);
+        });
         topBarWrapper.getChildren().add(shoppingCartBtn);
 
         //add shopping cart modal
@@ -112,9 +115,10 @@ public class MainShop extends VBox {
     }
 
     private void populateGrid() {
+        Runnable onQtyChange = () -> shoppingCartModal.setVisible(false);
         allProducts = IMatDataHandler.getInstance().getProducts().stream()
                 .sorted(Comparator.comparing(Product::getName))
-                .map(ProductCard::new).collect(Collectors.toList());
+                .map(p -> new ProductCard(p, onQtyChange)).collect(Collectors.toList());
         allProducts.forEach(productCard -> productFlow.getChildren().add(productCard));
     }
 

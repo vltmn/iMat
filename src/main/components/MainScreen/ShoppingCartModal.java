@@ -50,7 +50,10 @@ public class ShoppingCartModal extends VBox {
         }
         initializeList();
         updateList();
-        IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(cartEvent -> updateList());
+        IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(cartEvent -> {
+            updateList();
+            if(IMatDataHandler.getInstance().getShoppingCart().getItems().size() < 1) this.setVisible(false);
+        });
     }
 
     private ShoppingCartModal(EventHandler<ActionEvent> showChartEvent) {

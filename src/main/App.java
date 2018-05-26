@@ -1,6 +1,7 @@
 package main;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,9 +17,11 @@ public class App extends Application {
         primaryStage.setTitle("iMat");
         Scene scene = new Scene(root, 1300, 800);
         primaryStage.setScene(scene);
-//        primaryStage.setMaximized(true);
+        primaryStage.setMaximized(true);
         ScenicView.show(scene);
         primaryStage.show();
+
+        primaryStage.onCloseRequestProperty().setValue(event -> Platform.exit());
 
 
     }

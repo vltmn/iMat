@@ -62,7 +62,7 @@ public class ProductCard extends VBox {
     };
 
     private Product product;
-    public ProductCard(Product p) {
+    public ProductCard(Product p, Runnable onQtyChange) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/components/MainScreen/product_card.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -77,11 +77,15 @@ public class ProductCard extends VBox {
         Image i = IMatDataHandler.getInstance().getFXImage(p, productImage.getFitWidth(), productImage.getFitHeight());
         productImage.setImage(i);
         editAmount = MiscUtil.getInstance().getProductEditAmount(p);
-        editQuantity = new EditQuantity(p);
+        editQuantity = new EditQuantity(p, onQtyChange);
         editQuantityWrapper.getChildren().add(editQuantity);
         priceLabel.setText(MiscUtil.getInstance().formatAsCurrency(p.getPrice()));
         unitLabel.setText(p.getUnit().toLowerCase());
 
+    }
+
+    public ProductCard(Product p) {
+        this(p, () -> {});
     }
 
     public Product getProduct() {

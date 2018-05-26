@@ -51,6 +51,14 @@ public class EditQuantity extends HBox {
     }
 
     public EditQuantity(Product p, boolean removeItemIfEmpty, Function<Product, Boolean> onRemovedFn) {
+        this(p, removeItemIfEmpty, onRemovedFn, () -> {});
+    }
+
+    public EditQuantity(Product p, Runnable onChange) {
+        this(p, true, product -> true, onChange);
+    }
+
+    public EditQuantity(Product p, boolean removeItemIfEmpty, Function<Product, Boolean> onRemovedFn, Runnable onChange) {
         this();
         double editAmount = MiscUtil.getInstance().getProductEditAmount(p);
         EventHandler<MouseEvent> addEvent = event -> qtyField.setText(MiscUtil.getInstance().formatAsAmount(getCartQty(p) + editAmount));
@@ -88,10 +96,13 @@ public class EditQuantity extends HBox {
             double value = Double.parseDouble(newValue);
             if(value == getCartQty(p)) return;
             if(value == 0 && !this.onRemovedFn.apply(p)) return;
+            onChange.run();
             BackendUtil.getInstance().setProductAmount(p, value);
 
         });
     }
+
+
 
 
     public EditQuantity(Product p) {
